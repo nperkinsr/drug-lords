@@ -1,0 +1,402 @@
+:root {
+    --color1: #292626;   /* Black */
+    --color2: #394c5c;   /* Blue */
+    --color3: #746d6f;   /* Dark Grey */
+    --color4: #bdb1bb;   /* Light Lilac */
+    --color5: #ffffff;   /* White */
+    --color6: #e6e6e6;   /* Light Grey */
+  }
+
+  body {
+    background-color: var(--color2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: "Helvetica", sans-serif;
+  }
+
+/* ♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎ */
+/*  START OF MAIN  */
+/* ♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎ */
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: grid;
+  grid-template-columns: 508px 107px 403px 194px;
+  grid-template-rows: 107px 596px 107px;
+  gap: 15px;
+}
+
+#gameLogo {
+  grid-area: 1 / 1 / 2 / 3;
+  border-radius: 5px;
+  height: 100%;
+}
+
+#bank {
+  grid-area: 1 / 3 / 2 / 4;
+  background-color: var(--color5);
+  border-radius: 5px;
+  height: 100%;
+}
+
+#moneyInHand {
+  background-color: var(--color5);
+  border-radius: 5px;
+  height: 100%;
+}
+
+#map {
+  grid-area: 2 / 1 / 3 / 2;
+  background-color: var(--color5);
+  border-radius: 5px;
+  height: 100%;
+}
+
+#drugBoard {
+  grid-area: 2 / 2 / 3 / 5;
+  background-color: var(--color6);
+  border-radius: 5px;
+  height: 100%;
+  display: flex;
+}
+
+#newsBoard {
+  grid-area: 3 / 1 / 4 / 4;
+  background-color: var(--color5);
+  border-radius: 5px;
+  height: 100%;
+}
+
+#dateAndWeather {
+  grid-area: 3 / 4 / 4 / 5;
+  background-color: var(--color5);
+  border-radius: 5px;
+  height: 100%;
+}
+
+/* ♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎ */
+/*  START OF LOGO  */
+/* ♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎ */
+
+.drugLords {
+  display: flex;
+  align-items: center;
+  font-family: "Rubik Dirt", serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 5.5rem;
+  color: white;
+  margin: auto;
+}
+
+/* ♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎ */
+/*  START OF BANK  */
+/* ♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎ */
+
+.bank-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 10px;
+  margin: 4px;
+}
+
+.bank-content img {
+  grid-row: span 2;
+  margin: auto;
+}
+
+.balance {
+  grid-area: 1 / 2 / 2 / 3;
+  color: var(--color3);
+  font-size: 22px;
+  font-weight: 600;
+  padding-top: 20px;
+}
+
+.money-in-bank {
+  grid-area: 2 / 2 / 3 / 3;
+  color: var(--color4);
+  font-size: 26px;
+  font-weight: 600;
+  margin-top: -8px;
+}
+
+.bank-button {
+  background-color: var(--color4);
+  width: 115px;
+  text-align: center;
+  text-decoration: none;
+  align-content: center;
+  color: var(--color5);
+  border-radius: 5px;
+  height: 25px;
+  font-size: 14px;
+  transition: background-color 0.4s;
+}
+
+.bank-button:hover {
+  background-color: var(--color3);
+}
+
+.bank-button.deposit{
+  margin-top: 20px;
+}
+
+.bank-button.withdraw {
+  margin-top: -3px;
+}
+
+
+/* ♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎ */
+/*  START OF MONEY IN HAND  */
+/* ♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎ */
+
+.money-in-hand-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  margin: 18px 12px;
+}
+
+.money-in-hand-content img {
+  grid-row: span 2;
+  margin: auto;
+}
+
+.money-in-hands {
+display: flex;
+justify-content: center;
+align-items: center;
+color: var(--color4);
+font-size: 26px;
+font-weight: 600;
+}
+
+
+/* ♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎ */
+/*  START OF DRUGS BOARD  */
+/* ♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎ */
+
+.drugsContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-content: space-around;
+  padding: 18px;
+}
+
+  .singleCardContainer {
+    position: relative;
+    height: 170px;
+    width: 210px;
+    background-color: var(--color5);
+    border-radius: 5px;
+    place-items: center;
+    border: 1px solid var(--color4);
+    box-shadow: 4px 4px 0px rgba(60, 60, 60, 0.1);
+  }
+
+  .singleCardContent {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform:translate(-50%,-50%);
+    display: grid;
+    justify-content: center;
+    gap: 5px;
+    grid-template-columns:  1fr 1fr;;
+    grid-template-rows: 85px 22px 22px 12px;
+    width: 160px;
+  }
+
+  div .icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 5px;
+    border-bottom: 2px solid var(--color6);
+  }
+
+  .icon img {
+    width: 75px;
+    height: 75px;
+  }
+
+  .icon {
+    grid-area: 1 / 1 / 2 / 3;
+  }
+
+  .drugName {
+    grid-area: 2 / 1 / 3 / 3;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--color3);
+  }
+
+  .drugPrice {
+    grid-area: 3 / 1 / 4 / 2;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--color3);
+  }
+
+  .drugInPocket {
+    grid-area: 4 / 1 / 5 / 2;
+    font-size: 10px;
+    line-height: 3px;
+    color: var(--color4);
+  }
+
+  .drugAction {
+    grid-area: 3 / 2 /5 / 3;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .drugAction img {
+    width: 28px;
+    height: 28px;
+    opacity: 0.5;
+    padding-top: 3px;
+    transition: opacity 0.3s;
+  }
+
+  .drugAction img:hover {
+    opacity: 1;
+  }
+
+
+/* ♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎ */
+/*  START OF MAP AREA  */
+/* ♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎ */
+
+.map-area {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  align-items: center;
+  text-align: center;
+  text-wrap: wrap;
+  background-image: url("./assets/map2.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 80%;
+  width: 90%;
+  margin: auto;
+  opacity: 0.8;
+}
+
+.you-are-in {
+  text-align: center;
+  font-size: 14px;
+  color: var(--color3);
+  font-weight: 600;
+  padding-top: 20px;
+  padding-bottom: 10px;
+}
+
+.neighbourhood-name {
+  text-align: center;
+  font-size: 22px;
+  color: var(--color4);
+  font-weight: 600;
+  padding-bottom: 20px;
+}
+
+.map-button {
+  background-color: var(--color5);
+  box-shadow: 3px 3px 4px rgba(116, 116, 116, 0.4);
+  border: 1px solid var(--color4);
+  width: 130px;
+  padding: 8px 5px;
+  border-radius: 5px;
+  margin-left: 23%;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color3);
+  text-decoration: none;
+  transition: background-color 0.4s;
+}
+
+.map-button:hover {
+  background-color: var(--color3);
+  color: var(--color5);
+}
+
+/* ♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎ */
+/*  START OF NEWS BOARD  */
+/* ♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎ */
+
+.newsBoard {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  align-items: center;
+  gap: 20px;
+}
+
+.newsBoard img {
+padding: 0 30px;
+}
+
+.broadcast span {
+  font-size: 18px;
+  font-weight: 200;
+  line-height: 2rem;
+}
+
+
+/* ♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎ */
+/*  START OF DATE AND WEATHER  */
+/* ♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎ */
+
+.date-weight-container {
+  display: grid;
+  place-items: center;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 15px;
+  height: 100px;
+}
+
+.date {
+  grid-row: span 2;
+  background-image: url("./assets/calendar.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 85px;
+  width: 85px;
+  justify-content: center;
+  margin-left: 15px;
+  text-align: center;
+}
+
+.day-of-week {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 47px;
+  color: var(--color5);
+}
+
+.day-of-month {
+  font-size: 35px;
+  font-weight: 600;
+  line-height: 22px;
+  color: var(--color3)
+}
+
+.weather {
+  grid-row: span 2;
+  background-image: url("./assets/weather-sunny.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 65px;
+  width: 65px;
+  justify-content: center;
+  margin-right: 20px;
+}

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Drug Lords: The game</title>
+
+  <meta property="og:site_name" content="Drug Lords | The Game">
+  <meta property="og:title" content="Drug Lords | The Game" />
+  <meta property="og:description"
+    content="Welcome to the Drug Lords game. Buy and Sell for profit. You have 30 days." />
+  <meta property="og:image" itemprop="image" content="./assets/square-logo.png">
+  <meta property="og:type" content="website" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik+Dirt&family=Rubik+Distressed&display=swap"
+    rel="stylesheet">
+  <link rel=" stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css" />
+  <link rel=" stylesheet" href="./style.css" />
+
+</head>
+
+<body>
+
+  <div class="main">
+
+    <!-- ⭐️ BEGINNING OF GAME LOGO ⭐️ -->
+
+    <section id="gameLogo" class="gameLogo">
+      <h1 class="drugLords">DRUG LORDS</h1>
+    </section>
+
+
+    <!-- ⭐️ BEGINNING OF BANK ⭐️ -->
+    <section id="bank" class="bank">
+      <div class="bank-content">
+        <img src="./assets/bank.png" width="85px;" alt="bank" />
+        <div class="balance">BALANCE</div>
+        <div class="money-in-bank">$<span>750</span></div>
+        <a class="bank-button deposit" href="#">Deposit</a>
+        <a class="bank-button withdraw" href="#">Withdraw</a>
+      </div>
+    </section>
+
+
+    <!-- ⭐️ BEGINNING OF MONEY IN HAND ⭐️ -->
+
+    <section id="moneyInHand" class="moneyInHand">
+      <div class="money-in-hand-content">
+        <img src="./assets/hands.png" width="70px;" alt="hands" />
+        <div class="money-in-hands">$<span>300</span></div>
+      </div>
+
+    </section>
+
+
+    <!-- ⭐️ BEGINNING OF MAP SECTION ⭐️ -->
+
+    <section id="map" class="map">
+      <div class="you-are-in">YOU ARE IN</div>
+      <div class="neighbourhood-name">SUBURBAN NEIGHBOURHOOD</div>
+
+      <div class="map-area">
+
+        <a href="#" class="map-button industrial">INDUSTRIAL</br>AREA</a>
+        <a href="#" class="map-button suburban">SUBURBAN NEIGHBOURHOOD</a>
+        <a href="#" class="map-button downtown">DOWNTOWN</br>CLUB DISTRICT</a>
+        <a href="#" class="map-button university">UNIVERSITY CAMPUS</a>
+        <a href="#" class="map-button seedy">SEEDY BEACHFRONT</a>
+        <a href="#" class="map-button wealthy">WEALTHY</br>UPTOWN</a>
+
+      </div>
+    </section>
+
+
+    <!-- ⭐️ BEGINNING OF DRUGS BOARD SECTION ⭐️ -->
+
+    <section id="drugBoard" class="drugBoard">
+      <div class="drugsContainer">
+
+        <div class="singleCardContainer">
+          <div class="singleCardContent">
+            <div class="icon"><img src="./assets/cannabis.png" alt="Cannabis"></div>
+            <div class="drugName cannabis">CANNABIS</div>
+            <div class="drugPrice">$<span class="cannabis-price">75</span></div>
+            <div class="drugInPocket"><span class="drugInPocketNumber">0</span> in pocket</div>
+            <div class="drugAction"><a href="#"><img src="./assets/pouch.png" alt="pouch" /></a></div>
+          </div>
+        </div>
+
+        <div class="singleCardContainer">
+          <div class="singleCardContent">
+            <div class="icon"><img src="./assets/heroine.png" alt="Heroin"></div>
+            <div class="drugName heroin">HEROIN</div>
+            <div class="drugPrice">$<span class="heroin-price">329</span></div>
+            <div class="drugInPocket"><span class="drugInPocketNumber">0</span> in pocket</div>
+            <div class="drugAction"><a href="#"><img src="./assets/pouch.png" alt="pouch" /></a></div>
+          </div>
+        </div>
+
+        <div class="singleCardContainer">
+          <div class="singleCardContent">
+            <div class="icon"><img src="./assets/cocaine.png" alt="Cocaine"></div>
+            <div class="drugName cocaine">COCAINE</div>
+            <div class="drugPrice">$<span class="cocaine-price">240</span></div>
+            <div class="drugInPocket"><span class="drugInPocketNumber">0</span> in pocket</div>
+            <div class="drugAction"><a href="#"><img src="./assets/pouch.png" alt="pouch" /></a></div>
+          </div>
+        </div>
+
+        <div class="singleCardContainer">
+          <div class="singleCardContent">
+            <div class="icon"><img src="./assets/MDMA.png" alt="MDMA"></div>
+            <div class="drugName mdma">MDMA</div>
+            <div class="drugPrice">$<span class="mdma-price">128</span></div>
+            <div class="drugInPocket"><span class="drugInPocketNumber">0</span> in pocket</div>
+            <div class="drugAction"><a href="#"><img src="./assets/pouch.png" alt="pouch" /></a></div>
+          </div>
+        </div>
+
+        <div class="singleCardContainer">
+          <div class="singleCardContent">
+            <div class="icon"><img src="./assets/ketamine.png" alt="Ketamine"></div>
+            <div class="drugName ketamine">KETAMINE</div>
+            <div class="drugPrice">$<span class="ketamine-price">219</span></div>
+            <div class="drugInPocket"><span class="drugInPocketNumber">0</span> in pocket</div>
+            <div class="drugAction"><a href="#"><img src="./assets/pouch.png" alt="pouch" /></a></div>
+          </div>
+        </div>
+
+        <div class="singleCardContainer">
+          <div class="singleCardContent">
+            <div class="icon"><img src="./assets/oxycodone.png" alt="Oxycodone"></div>
+            <div class="drugName oxycodone">OXYCODONE</div>
+            <div class="drugPrice">$<span class="oxycodone-price">329</span></div>
+            <div class="drugInPocket"><span class="drugInPocketNumber">0</span> in pocket</div>
+            <div class="drugAction"><a href="#"><img src="./assets/pouch.png" alt="pouch" /></a></div>
+          </div>
+        </div>
+
+        <div class="singleCardContainer">
+          <div class="singleCardContent">
+            <div class="icon"><img src="./assets/adderall.png" alt="Adderall"></div>
+            <div class="drugName adderall">ADDERALL</div>
+            <div class="drugPrice">$<span class="adderall-price">78</span></div>
+            <div class="drugInPocket"><span class="drugInPocketNumber">0</span> in pocket</div>
+            <div class="drugAction"><a href="#"><img src="./assets/pouch.png" alt="pouch" /></a></div>
+          </div>
+        </div>
+
+        <div class="singleCardContainer">
+          <div class="singleCardContent">
+            <div class="icon"><img src="./assets/fentanyl.png" alt="Fentanyl"></div>
+            <div class="drugName fentanyl">FENTANYL</div>
+            <div class="drugPrice">$<span class="fentanyl-price">115</span></div>
+            <div class="drugInPocket"><span class="drugInPocketNumber">0</span> in pocket</div>
+            <div class="drugAction"><a href="#"><img src="./assets/pouch.png" alt="punch" /></a></div>
+          </div>
+        </div>
+
+        <div class="singleCardContainer">
+          <div class="singleCardContent">
+            <div class="icon"><img src="./assets/LSD.png" alt="LSD"></div>
+            <div class="drugName lsd">LSD</div>
+            <div class="drugPrice">$<span class="lsd-price">98</span></div>
+            <div class="drugInPocket"><span class="drugInPocketNumber">0</span> in pocket</div>
+            <div class="drugAction"><a href="#"><img src="./assets/pouch.png" alt="pouch" /></a></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ⭐️ BEGINNING OF NEWS BOARD SECTION ⭐️ -->
+
+    <section id="newsBoard" class="newsBoard">
+      <img src="./assets/news.png" width="90px;" />
+      <div class="broadcast">
+        <span>President Huggy McHandshake will grace us this <strong>Saturday</strong> with a parade through
+          <strong>Main Street</strong>.</span>
+        </br>
+        <span>Stack up on snacks and prepare for road closures!</span>
+        </span>
+      </div>
+    </section>
+
+
+    <!-- ⭐️ BEGINNING OF DATE & WEATHER SECTION ⭐️ -->
+
+    <section id="dateAndWeather" class="dateAndWeather">
+      <div class="date-weight-container">
+        <div class="date">
+          <span class="day-of-week">WED</span>
+          <br>
+          <span class="day-of-month">25</span>
+        </div>
+        <div class="weather">
+        </div>
+      </div>
+    </section>
+
+
+  </div>
+</body>
+
+</html>
