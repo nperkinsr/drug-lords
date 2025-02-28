@@ -276,7 +276,7 @@ div .icon {
 /*  START OF MAP AREA  */
 /* ♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎ */
 
-.button-map-mobile {
+#button-map-mobile {
   display: none;
 }
 
