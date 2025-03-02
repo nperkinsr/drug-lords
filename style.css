@@ -5,7 +5,8 @@
   --color4: #b5a5b3; /* Light Lilac */
   --color5: #ffffff; /* White */
   --color6: #e6e6e6; /* Light Grey */
-  --color7: #4a0061; /* Orangy Red */
+  --color7: #ff6289; /* Orangy Red */
+  --color8: #ff1a53; /* Orangy Red */
 }
 
 body {
@@ -379,12 +380,12 @@ div .icon {
   padding: 0 30px;
 }
 
-.broadcast span {
+.broadcast p {
   font-size: 18px;
   font-weight: 200;
-  line-height: 1.8rem;
   display: inline-block;
   width: 90%;
+  margin: 0.4rem;
 }
 
 /* ♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎ */
@@ -450,52 +451,83 @@ div .icon {
     justify-content: center;
     align-items: center;
     display: grid;
-    grid-template-columns: 50% 22% 26%;
-    grid-template-rows: 1fr 1fr 740px 160px;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: 1fr 110px 740px 160px;
     gap: 1.3rem;
   }
 
   #gameLogo {
-    grid-area: 1 / 1 / 2 / 4;
-    border-radius: 5px;
-    width: 100%;
+    grid-area: 1 / 1 / 2 / 5;
+    max-width: 100%;
+    padding: 0;
+    place-content: center;
+    line-height: auto;
+    margin: 1rem auto; /* Centering */
   }
 
   .drugLords {
-    justify-content: center;
+    font-size: clamp(2rem, 9.5vw, 13rem);
+    white-space: nowrap;
+    text-align: left;
+    width: max-content;
+    line-height: 1;
   }
 
-  /* BANK */
+  /* BANK - TABLET */
 
   #bank {
-    grid-area: 2 / 1 / 3 / 2;
+    grid-area: 2 / 1 / 3 / 4;
     background-color: var(--color5);
     border-radius: 5px;
-    height: 100%;
+    height: 110px;
+  }
+
+  .bank-content {
+    display: grid;
+    grid-template-columns: 75px 35% 45%;
+    grid-template-rows: 1fr 1fr;
+    gap: 10px;
+    margin: 4px;
+    height: 80px;
+    align-items: center;
     align-content: center;
+    justify-content: center;
+    justify-items: center;
+  }
+
+  .bank-content img {
+    scale: calc(0.6);
+    padding-top: 1.5rem;
+    padding-right: 1rem;
   }
 
   .balance {
-    font-size: 26px;
+    font-size: clamp(1rem, 2.5vw, 2rem);
   }
 
   .money-in-bank {
-    font-size: 29px;
+    font-size: 28px;
   }
 
   .bank-button {
     width: 80%;
-    height: 2.2rem;
+    height: 2.6rem;
     font-size: 15px;
+    text-transform: uppercase;
+    display: block;
+    border-radius: 35px;
+    margin-right: 0.5rem;
   }
 
-  /* MONEY IN HAND */
+  /* MONEY IN HAND - TABLET */
 
   #moneyInHand {
-    grid-area: 2 / 2 / 3 / 3;
+    grid-area: 2 / 4 / 3 / 5;
     background-color: var(--color5);
     border-radius: 5px;
-    height: 100%;
+    height: 110px;
+    display: flex;
+    align-items: center;
   }
 
   .money-in-hands {
@@ -504,48 +536,56 @@ div .icon {
     align-items: center;
     height: 5.5rem;
     display: flex;
-    font-size: 29px;
+    font-size: 28px;
   }
 
-  /* MAP */
+  .money-in-hand-content img {
+    scale: calc(0.7);
+    padding-right: 0.8rem;
+  }
+
+  /* MAP TABLET */
 
   #map {
     display: none;
   }
 
   #button-map-mobile {
-    grid-area: 2 / 3 / 3 / 4;
-    display: block;
-    background-color: var(--color5);
-    border-radius: 5px;
-    color: var(--color4);
-    text-align: center;
-    height: 100%;
+    grid-area: 1 / 5 / 2 / 6;
+    display: flex;
+    justify-content: center;
     align-content: center;
-    padding: 0 1rem;
+    line-height: 1;
+    background-color: var(--color7);
+    color: var(--color5);
+    height: 50px;
+    width: auto;
+    border-radius: 35px;
+    padding: 5px 10px; /* Tap area */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+
+  #button-map-mobile:hover {
+    background-color: var(--color8);
   }
 
   #button-map-mobile a {
     text-decoration: none;
-    font-size: 0.7rem;
-    color: var(--color4);
-  }
-
-  .button-tablet .youAreIn {
-    margin-bottom: -0.8rem;
-  }
-
-  .neighbourhood-name {
     font-size: 1rem;
-    padding-bottom: 0;
-    color: var(--color3);
-    margin-bottom: -0.2rem;
+    color: var(--color5);
+    margin: auto;
+    display: block;
   }
 
-  /* DRUGS BOARD */
+  #button-map-mobile:active {
+    transform: scale(0.95); /* Press-down effect */
+    background-color: var(--color8);
+  }
+
+  /* DRUGS BOARD TABLET */
 
   #drugBoard {
-    grid-area: 3 / 1 / 4 / 4;
+    grid-area: 3 / 1 / 4 / 6;
     background-color: var(--color6);
     border-radius: 5px;
     height: 100%;
@@ -581,22 +621,32 @@ div .icon {
     height: 70px;
   }
 
-  /* NEWS BOARD */
+  /* NEWS BOARD TABLET */
 
   #newsBoard {
-    grid-area: 4 / 1 / 5 / 3;
+    grid-area: 4 / 1 / 5 / 6;
     background-color: var(--color5);
     border-radius: 5px;
     height: 100%;
   }
 
-  /* DATE AND WEATHER */
+  .broadcast {
+    padding-right: 2rem;
+  }
+
+  .broadcast p {
+    margin: 0.4rem;
+  }
+
+  /* DATE AND WEATHER TABLET */
 
   #dateAndWeather {
-    grid-area: 4 / 3 / 5 / 4;
+    grid-area: 2 / 5 / 3 / 6;
     background-color: var(--color5);
     border-radius: 5px;
-    height: 100%;
+    height: 110px;
+    display: flex;
+    align-items: center;
   }
 
   .date-weather-container {
@@ -608,122 +658,161 @@ div .icon {
     justify-content: center;
     align-items: center;
     height: 100%;
-    gap: 10%;
-    scale: calc(0.9);
+    scale: calc(0.8);
   }
 }
 
-/* MENOS DE 765PX */
+/* LESS THAN 765PX - MOBILE */
 
-@media screen and (min-width: 380px) and (max-width: 765px) {
+@media screen and (min-width: 380px) and (max-width: 790px) {
   .main {
     margin: 1rem;
-    margin-top: 3rem;
     display: flex;
     justify-content: center;
     align-items: center;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 70px 130px 110px 110px 75rem 150px;
-    gap: 1rem;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: 70px 75px 75px 75rem 150px;
+    column-gap: 1rem;
+    row-gap: 0.5rem;
   }
 
   #gameLogo {
-    width: 100%;
+    grid-area: 1 / 1 / 2 / 4;
+    max-width: 90%;
+    padding: 0;
+    place-content: center;
+    line-height: auto;
+    margin: 1rem auto;
   }
 
   .drugLords {
-    justify-content: center;
-    font-size: 3rem;
+    font-size: clamp(1rem, 7.5vw, 4rem);
+    white-space: nowrap;
+    text-align: left;
+    width: max-content;
+    line-height: 1;
   }
-
-  /* BANK */
-
-  #bank {
-    grid-area: 2 / 1 / 3 / 3;
-    background-color: var(--color5);
-    border-radius: 5px;
-  }
-
-  .bank-content img {
-    scale: calc(0.9);
-    margin-left: 20%;
-    margin-right: 20%;
-  }
-
-  .balance {
-    font-size: 24px;
-  }
-
-  .money-in-bank {
-    font-size: 30px;
-  }
-
-  .bank-button {
-    width: 80%;
-    height: 2.3rem;
-    font-size: 15px;
-  }
-
-  /* MONEY IN HAND */
-
-  #moneyInHand {
-    grid-area: 3 / 1 / 4 / 2;
-    gap: 10%;
-    height: 100%;
-    align-content: center;
-  }
-
-  .money-in-hands {
-    font-size: 30px;
-    height: 100%;
-    align-content: center;
-  }
-
-  .money-in-hand-content img {
-    scale: calc(0.9);
-  }
-
-  /* MAP */
+  /* MAP MOBILE */
 
   #map {
     display: none;
   }
 
   #button-map-mobile {
-    grid-area: 4 / 1 / 5 / 3;
-    display: block;
-    background-color: var(--color5);
-    border-radius: 5px;
-    color: var(--color4);
-    text-align: center;
+    grid-area: 1 / 4 / 2 / 6;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    background-color: var(--color7);
+    color: var(--color5);
+    width: auto;
+    padding: 5px;
+    border-radius: 35px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+
+  #button-map-mobile:hover {
+    background-color: var(--color8);
   }
 
   #button-map-mobile a {
     text-decoration: none;
-    font-size: 0.8rem;
-    color: var(--color4);
+    font-size: 0.9rem;
+    color: var(--color5);
+    margin: auto;
+    display: block;
   }
 
-  .button-tablet .youAreIn {
-    margin-bottom: -1rem;
+  #button-map-mobile:active {
+    transform: scale(0.95); /* Press-down effect */
+    background-color: var(--color8);
   }
 
-  .neighbourhood-name {
-    font-size: 1.4rem;
-    padding-bottom: 0;
-    color: var(--color3);
-    margin-bottom: -0.2rem;
+  /* BANK MOBILE */
+
+  #bank {
+    grid-area: 2 / 1 / 4 / 4;
+    background-color: var(--color5);
+    border-radius: 5px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  .whatToDo {
-    padding: 0 2rem;
+  .bank-content {
+    display: grid;
+    grid-template-columns: 40% 60%;
+    grid-template-rows: repeat(4, 1fr);
+    gap: 10px;
+    width: 100%;
+    height: 130px;
   }
 
-  /* DRUGS BOARD */
+  .balance {
+    grid-area: 3 / 1 / 4 / 2;
+    font-size: clamp(1rem, 3vw, 4rem);
+    text-align: center;
+    padding: 0;
+  }
+
+  .money-in-bank {
+    grid-area: 4 / 1 / 5 / 2;
+    font-size: clamp(1rem, 5vw, 4rem);
+    text-align: center;
+  }
+
+  .deposit {
+    grid-area: 1 / 2 / 3 / 3;
+  }
+
+  .withdraw {
+    grid-area: 3 / 2 / 5 / 3;
+  }
+
+  .bank-content img {
+    grid-area: 1 / 1 / 3 / 2;
+    scale: calc(0.6);
+    margin: auto;
+    padding: 0;
+  }
+
+  .bank-button {
+    width: 80%;
+    height: 2.4rem;
+    font-size: 13px;
+    border-radius: 35px;
+    margin: auto;
+  }
+
+  /* MONEY IN HAND MOBILE */
+
+  #moneyInHand {
+    grid-area: 3 / 4 / 4 / 6;
+    gap: 10%;
+    height: 70px;
+    align-content: center;
+  }
+
+  .money-in-hands {
+    font-size: clamp(1rem, 5vw, 4rem);
+    height: 100%;
+    align-content: center;
+  }
+
+  .money-in-hand-content img {
+    scale: calc(0.6);
+  }
+
+  .money-in-hand-content {
+    margin: 0;
+  }
+
+  /* DRUGS BOARD MOBILE */
 
   #drugBoard {
-    grid-area: 5 / 1 / 6 / 3;
+    grid-area: 4 / 1 / 5 / 6;
     background-color: var(--color6);
     border-radius: 5px;
     height: 100%;
@@ -801,38 +890,37 @@ div .icon {
     grid-area: 2 / 3 / 3 / 4;
   }
 
-  /* NEWS BOARD */
+  /* NEWS BOARD MOBILE */
 
   #newsBoard {
-    grid-area: 6 / 1 / 7 / 3;
+    grid-area: 5 / 1 / 6 / 6;
   }
 
-  .newsBoard img {
-    padding: 0 15px;
-    height: 70px;
-    width: 70px;
-  }
-
-  .broadcast span {
-    font-size: 15px;
+  .broadcast p {
+    font-size: 17px;
     font-weight: 200;
     line-height: 1.4rem;
     display: inline-block;
-    margin-left: -2.5rem;
     width: fit-content;
-    padding-right: 0.7rem;
+    margin: 0.4rem;
   }
 
-  /* DATE AND WEATHER */
+  /* DATE AND WEATHER MOBILE */
 
   #dateAndWeather {
-    grid-area: 3 / 2 / 4 / 3;
+    grid-area: 2 / 4 / 3 / 6;
+    background-color: var(--color5);
+    border-radius: 5px;
+    height: 70px;
+    padding: 0;
+    margin: 0;
   }
 
   .date-weather-container {
-    gap: 10%;
-    scale: calc(0.8);
-    height: 100%;
-    align-content: center;
+    display: grid;
+    place-content: center;
+    height: 70px;
+    scale: calc(0.6);
+    width: 100%;
   }
 }
