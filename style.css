@@ -1,16 +1,18 @@
 :root {
-  --color1: #292626; /* Black */
-  --color2: #394c5c; /* Blue */
-  --color3: #746d6f; /* Dark Grey */
-  --color4: #b5a5b3; /* Light Lilac */
-  --color5: #ffffff; /* White */
-  --color6: #e6e6e6; /* Light Grey */
-  --color7: #ff6289; /* Orangy Red */
-  --color8: #ff1a53; /* Orangy Red */
+  --background: #394c5c; /* White */
+  --black: #000000; /* Black */
+  --white: #ffffff; /* White */
+  --color1: #564e50; /* Dark Warm Grey */
+  --color2: #c4b3c1; /* Light Lilac */
+  --color3: #a4d6ff; /* Liight Blue */
+  --color4: #dad0d0; /* Light Grey */
+  --color5: #ff6289; /* Redish Pink */
+  --color6: #ec0b43; /* Red */
+  --color7: #ededed; /* Very Light Grey */
 }
 
 body {
-  background-color: var(--color2);
+  background-color: var(--background);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -39,27 +41,28 @@ body {
 
 #bank {
   grid-area: 1 / 3 / 2 / 4;
-  background-color: var(--color5);
+  background-color: var(--white);
   border-radius: 5px;
   height: 100%;
 }
 
 #moneyInHand {
-  background-color: var(--color5);
+  background-color: var(--white);
   border-radius: 5px;
   height: 100%;
 }
 
 #map {
   grid-area: 2 / 1 / 3 / 2;
-  background-color: var(--color5);
+  background-color: var(--white);
   border-radius: 5px;
   height: 100%;
+  font-size: 0.8rem;
 }
 
 #drugBoard {
   grid-area: 2 / 2 / 3 / 5;
-  background-color: var(--color6);
+  background-color: var(--color7);
   border-radius: 5px;
   height: 100%;
   display: flex;
@@ -67,14 +70,14 @@ body {
 
 #newsBoard {
   grid-area: 3 / 1 / 4 / 4;
-  background-color: var(--color5);
+  background-color: var(--white);
   border-radius: 5px;
   height: 100%;
 }
 
 #dateAndWeather {
   grid-area: 3 / 4 / 4 / 5;
-  background-color: var(--color5);
+  background-color: var(--white);
   border-radius: 5px;
   height: 100%;
 }
@@ -90,7 +93,7 @@ body {
   font-weight: 400;
   font-style: normal;
   font-size: 5.5rem;
-  color: white;
+  color: var(--white);
   margin: auto;
 }
 
@@ -133,7 +136,7 @@ body {
   text-align: center;
   text-decoration: none;
   align-content: center;
-  color: var(--color5);
+  color: var(--white);
   border-radius: 5px;
   height: 25px;
   font-size: 14px;
@@ -196,7 +199,7 @@ body {
   position: relative;
   height: 10.4rem;
   width: 13rem;
-  background-color: var(--color5);
+  background-color: var(--white);
   border-radius: 5px;
   place-items: center;
   border: 1px solid var(--color4);
@@ -221,7 +224,7 @@ div .icon {
   justify-content: center;
   align-items: center;
   padding-bottom: 5px;
-  border-bottom: 2px solid var(--color6);
+  border-bottom: 2px solid var(--color7);
 }
 
 .icon img {
@@ -238,7 +241,7 @@ div .icon {
   text-align: center;
   font-size: 18px;
   font-weight: 600;
-  color: var(--color3);
+  color: var(--color2);
 }
 
 .drugPrice {
@@ -291,10 +294,12 @@ div .icon {
   background-image: url("./assets/map2.svg");
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: center;
   height: 80%;
   width: 90%;
   margin: auto;
   opacity: 0.8;
+  position: relative;
 }
 
 .you-are-in {
@@ -312,57 +317,156 @@ div .icon {
   color: var(--color4);
   font-weight: 600;
   padding-bottom: 20px;
+  text-transform: uppercase;
 }
 
 .map-button {
-  position: relative;
-  background-color: var(--color4);
-  box-shadow: 3px 3px 1px rgba(116, 116, 116, 0.4);
-  border: 1px solid var(--color5);
-  color: var(--color5);
-  width: 8rem;
-  padding: 8px 5px;
-  border-radius: 5px;
-  margin: auto;
-  font-size: 13px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: background-color 0.2s;
-  overflow: hidden;
-  transition: 0.1s linear 0.1s;
-  align-self: center;
-  z-index: 2;
-}
-
-.map-button span {
-  font-family: "Montserrat", serif;
-  font-size: 1.2rem;
-  font-weight: 400;
-  position: relative;
-  z-index: 2;
-  transition: 0.2s linear 0.1s;
-}
-
-.map-button::after {
-  display: block;
-  content: "";
-  background-color: var(--color1);
-  width: 520px;
-  height: 500px;
-  border-radius: 50%;
+  backdrop-filter: blur(0px);
   position: absolute;
-  top: 100%;
-  transform: translateX(-40%);
-  transition: 0.2s linear 0.1s;
-  z-index: -1;
 }
 
-.map-button:hover::after {
-  top: -10px; /* Moves the yellow background into view */
+.map-button p {
+  position: absolute;
+  width: 140px;
+  text-decoration: none;
+  color: var(--white);
+  background-color: var(--color2);
+  padding: 10px 0;
+  margin: 0;
+  border-radius: 5px;
+  border: 2px solid var(--white);
+  transition: background-color 1s ease;
 }
 
-.map-button:hover span {
-  color: var(--color5);
+.map-button:hover,
+.map-button:hover p,
+.map-button p:hover,
+.map-button p:hover ~ .map-button {
+  /* backdrop-filter: grayscale(100%);  */
+  backdrop-filter: blur(2px);
+  background-color: rgba(128, 128, 128, 0.219);
+  color: var(--white);
+}
+
+.map-button:hover p {
+  background-color: var(--color5);
+}
+
+.industrial {
+  clip-path: polygon(0 0, 0 22%, 11% 27%, 22% 30%, 33% 27%, 44% 24%, 48% 0);
+  grid-area: 1 / 1 / 2 / 2;
+  height: 500px;
+  width: 450px;
+  left: 0px;
+  top: 0;
+}
+
+.industrial p {
+  left: 40px;
+  top: 30px;
+}
+
+.suburban {
+  clip-path: polygon(
+    51% 0%,
+    47% 24%,
+    56% 23%,
+    65% 23%,
+    71% 24%,
+    76% 25%,
+    82% 27%,
+    90% 30%,
+    100% 33%,
+    100% 0%
+  );
+  grid-area: 1 / 2 / 2 / 3;
+  height: 500px;
+  width: 450px;
+  left: -224px;
+  top: 0;
+}
+
+.suburban p {
+  left: 280px;
+  top: 30px;
+}
+
+.downtown {
+  clip-path: polygon(
+    43% 27%,
+    28% 32%,
+    12% 39%,
+    0 42%,
+    0 47%,
+    48% 75%,
+    53% 94%,
+    63% 61%,
+    41% 39%
+  );
+  grid-area: 2 / 1 / 3 / 2;
+  height: 455px;
+  width: 455px;
+  left: 0;
+  top: -110;
+}
+
+.downtown p {
+  left: 40px;
+  top: 180px;
+}
+
+.university {
+  clip-path: polygon(
+    46% 27%,
+    56% 26%,
+    67% 26%,
+    74% 28%,
+    81% 30%,
+    90% 33%,
+    97% 36%,
+    100% 36%,
+    100% 59%,
+    66% 59%,
+    44% 38%
+  );
+  grid-area: 2 / 2 / 3 / 3;
+  height: 455px;
+  width: 454px;
+  left: -226px;
+  top: -110;
+}
+
+.university p {
+  left: 280px;
+  top: 180px;
+}
+
+.seedy {
+  clip-path: polygon(0% 47%, 0% 100%, 51% 100%, 53% 96%, 47% 75%);
+  grid-area: 3 / 1 / 4 / 2;
+  height: 495px;
+  width: 455px;
+  left: 0;
+  top: -335px;
+}
+
+.seedy p {
+  left: 40px;
+  top: 390px;
+}
+
+.wealthy {
+  clip-path: polygon(54% 100%, 65% 60%, 100% 60%, 100% 100%);
+  grid-area: 3 / 2 / 4 / 3;
+  height: 480px;
+  width: 454px;
+  left: -226px;
+  top: -320px;
+}
+
+.wealthy p {
+  left: 280px;
+  top: 375px;
 }
 
 /* ♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎ */
@@ -417,14 +521,14 @@ div .icon {
   font-size: 20px;
   font-weight: 600;
   line-height: 47px;
-  color: var(--color5);
+  color: var(--white);
 }
 
 .day-of-month {
   font-size: 35px;
   font-weight: 600;
   line-height: 22px;
-  color: var(--color3);
+  color: var(--color1);
 }
 
 .weather {
@@ -477,7 +581,7 @@ div .icon {
 
   #bank {
     grid-area: 2 / 1 / 3 / 4;
-    background-color: var(--color5);
+    background-color: var(--white);
     border-radius: 5px;
     height: 110px;
   }
@@ -523,7 +627,7 @@ div .icon {
 
   #moneyInHand {
     grid-area: 2 / 4 / 3 / 5;
-    background-color: var(--color5);
+    background-color: var(--white);
     border-radius: 5px;
     height: 110px;
     display: flex;
@@ -556,8 +660,8 @@ div .icon {
     justify-content: center;
     align-content: center;
     line-height: 1;
-    background-color: var(--color7);
-    color: var(--color5);
+    background-color: var(--color5);
+    color: var(--white);
     height: 50px;
     width: auto;
     border-radius: 35px;
@@ -566,20 +670,20 @@ div .icon {
   }
 
   #button-map-mobile:hover {
-    background-color: var(--color8);
+    background-color: var(--color6);
   }
 
   #button-map-mobile a {
     text-decoration: none;
     font-size: 1rem;
-    color: var(--color5);
+    color: var(--white);
     margin: auto;
     display: block;
   }
 
   #button-map-mobile:active {
     transform: scale(0.95); /* Press-down effect */
-    background-color: var(--color8);
+    background-color: var(--color6);
   }
 
   #map.map-fullscreen {
@@ -624,8 +728,6 @@ div .icon {
 
   #drugBoard {
     grid-area: 3 / 1 / 4 / 6;
-    background-color: var(--color6);
-    border-radius: 5px;
     height: 100%;
     display: flex;
   }
@@ -663,7 +765,7 @@ div .icon {
 
   #newsBoard {
     grid-area: 4 / 1 / 5 / 6;
-    background-color: var(--color5);
+    background-color: var(--white);
     border-radius: 5px;
     height: 100%;
   }
@@ -674,13 +776,14 @@ div .icon {
 
   .broadcast p {
     margin: 0.4rem;
+    width: 100%;
   }
 
   /* DATE AND WEATHER TABLET */
 
   #dateAndWeather {
     grid-area: 2 / 5 / 3 / 6;
-    background-color: var(--color5);
+    background-color: var(--white);
     border-radius: 5px;
     height: 110px;
     display: flex;
@@ -747,8 +850,8 @@ div .icon {
     display: flex;
     justify-content: center;
     align-content: center;
-    background-color: var(--color7);
-    color: var(--color5);
+    background-color: var(--color5);
+    color: var(--white);
     width: auto;
     padding: 5px;
     border-radius: 35px;
@@ -756,20 +859,20 @@ div .icon {
   }
 
   #button-map-mobile:hover {
-    background-color: var(--color8);
+    background-color: var(--color6);
   }
 
   #button-map-mobile a {
     text-decoration: none;
     font-size: 0.9rem;
-    color: var(--color5);
+    color: var(--white);
     margin: auto;
     display: block;
   }
 
   #button-map-mobile:active {
     transform: scale(0.95); /* Press-down effect */
-    background-color: var(--color8);
+    background-color: var(--color6);
   }
 
   #map.map-fullscreen {
@@ -814,9 +917,9 @@ div .icon {
 
   #bank {
     grid-area: 2 / 1 / 4 / 4;
-    background-color: var(--color5);
+    background-color: var(--white);
     border-radius: 5px;
-    height: 150px;
+    height: 156px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -894,8 +997,6 @@ div .icon {
 
   #drugBoard {
     grid-area: 4 / 1 / 5 / 6;
-    background-color: var(--color6);
-    border-radius: 5px;
     height: 100%;
     display: flex;
   }
@@ -938,7 +1039,7 @@ div .icon {
     justify-content: center;
     align-items: center;
     padding-right: 35%;
-    border-right: 2px solid var(--color6);
+    border-right: 2px solid var(--color7);
     border-bottom: none;
   }
 
@@ -992,7 +1093,7 @@ div .icon {
 
   #dateAndWeather {
     grid-area: 2 / 4 / 3 / 6;
-    background-color: var(--color5);
+    background-color: var(--white);
     border-radius: 5px;
     height: 70px;
     padding: 0;
