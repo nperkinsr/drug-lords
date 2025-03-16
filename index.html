@@ -18,6 +18,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Rubik+Dirt&family=Rubik+Distressed&display=swap"
     rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link rel=" stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css" />
   <link rel=" stylesheet" href="./style.css" />
 
@@ -51,7 +52,7 @@
     <section id="moneyInHand" class="moneyInHand">
       <div class="money-in-hand-content">
         <img src="./assets/hands.png" width="70px;" alt="hands" />
-        <div class="money-in-hands">$<span>2300</span></div>
+        <div class="money-in-hands">$<span>700</span></div>
       </div>
 
     </section>
@@ -104,7 +105,7 @@
             <div class="drugName cannabis">CANNABIS</div>
             <div class="drugPrice">$<span class="cannabis-price">75</span></div>
             <div class="drugInPocket"><span class="drugInPocketNumber">0</span> in pocket</div>
-            <div class="drugAction"><a href="#"><img src="./assets/pouch.png" alt="pouch" /></a></div>
+            <button class="drugAction"><i class="bi bi-bag-fill"></i></button>
           </div>
         </div>
 
@@ -114,7 +115,7 @@
             <div class="drugName heroin">HEROIN</div>
             <div class="drugPrice">$<span class="heroin-price">329</span></div>
             <div class="drugInPocket"><span class="drugInPocketNumber">0</span> in pocket</div>
-            <div class="drugAction"><a href="#"><img src="./assets/pouch.png" alt="pouch" /></a></div>
+            <button class="drugAction"><i class="bi bi-bag-fill"></i></button>
           </div>
         </div>
 
@@ -124,7 +125,7 @@
             <div class="drugName cocaine">COCAINE</div>
             <div class="drugPrice">$<span class="cocaine-price">240</span></div>
             <div class="drugInPocket"><span class="drugInPocketNumber">0</span> in pocket</div>
-            <div class="drugAction"><a href="#"><img src="./assets/pouch.png" alt="pouch" /></a></div>
+            <button class="drugAction"><i class="bi bi-bag-fill"></i></button>
           </div>
         </div>
 
@@ -134,7 +135,7 @@
             <div class="drugName mdma">MDMA</div>
             <div class="drugPrice">$<span class="mdma-price">128</span></div>
             <div class="drugInPocket"><span class="drugInPocketNumber">0</span> in pocket</div>
-            <div class="drugAction"><a href="#"><img src="./assets/pouch.png" alt="pouch" /></a></div>
+            <button class="drugAction"><i class="bi bi-bag-fill"></i></button>
           </div>
         </div>
 
@@ -144,7 +145,7 @@
             <div class="drugName ketamine">KETAMINE</div>
             <div class="drugPrice">$<span class="ketamine-price">219</span></div>
             <div class="drugInPocket"><span class="drugInPocketNumber">0</span> in pocket</div>
-            <div class="drugAction"><a href="#"><img src="./assets/pouch.png" alt="pouch" /></a></div>
+            <button class="drugAction"><i class="bi bi-bag-fill"></i></button>
           </div>
         </div>
 
@@ -154,7 +155,7 @@
             <div class="drugName oxycodone">OXYCODONE</div>
             <div class="drugPrice">$<span class="oxycodone-price">329</span></div>
             <div class="drugInPocket"><span class="drugInPocketNumber">0</span> in pocket</div>
-            <div class="drugAction"><a href="#"><img src="./assets/pouch.png" alt="pouch" /></a></div>
+            <button class="drugAction"><i class="bi bi-bag-fill"></i></button>
           </div>
         </div>
 
@@ -164,7 +165,7 @@
             <div class="drugName adderall">ADDERALL</div>
             <div class="drugPrice">$<span class="adderall-price">78</span></div>
             <div class="drugInPocket"><span class="drugInPocketNumber">0</span> in pocket</div>
-            <div class="drugAction"><a href="#"><img src="./assets/pouch.png" alt="pouch" /></a></div>
+            <button class="drugAction"><i class="bi bi-bag-fill"></i></button>
           </div>
         </div>
 
@@ -174,7 +175,7 @@
             <div class="drugName fentanyl">FENTANYL</div>
             <div class="drugPrice">$<span class="fentanyl-price">115</span></div>
             <div class="drugInPocket"><span class="drugInPocketNumber">0</span> in pocket</div>
-            <div class="drugAction"><a href="#"><img src="./assets/pouch.png" alt="punch" /></a></div>
+            <button class="drugAction"><i class="bi bi-bag-fill"></i></button>
           </div>
         </div>
 
@@ -184,7 +185,7 @@
             <div class="drugName lsd">LSD</div>
             <div class="drugPrice">$<span class="lsd-price">98</span></div>
             <div class="drugInPocket"><span class="drugInPocketNumber">0</span> in pocket</div>
-            <div class="drugAction"><a href="#"><img src="./assets/pouch.png" alt="pouch" /></a></div>
+            <button class="drugAction"><i class="bi bi-bag-fill"></i></button>
           </div>
         </div>
 
@@ -224,6 +225,28 @@
   </div>
 
   <div class="map-overlay"></div>
+
+  <div class="drug-transaction-container hidden">
+    <div class="dt-single-card-container">
+      <div class="dt-icon"><img src="./assets/LSD.png"></div>
+      <!-- <button class="goback"><span>&#215;</span></button> -->
+      <div class="dt-drug-name">OXYCODONE</div>
+      <div class="dt-drug-price">$<span class="dt-price">259</span></div>
+      <div class="dt-drug-purchase-total"><i class="bi bi-tag"></i> $<span class="dt-total">259</span></div>
+      <div class="dt-pill-area">
+        <div class="dt-drug-amount">
+          <button class="dt-pill-button" id="dt-decrement"><span>&#8722;</span></button>
+          <div class="dt-pill" id="dt-pill">0</div>
+          <button class="dt-pill-button" id="dt-increment"><span>&#43;</span></button>
+        </div>
+      </div>
+      <div class="dt-buy-button-container"><button class="dt-button dt-buy-button">Buy</button></div>
+      <div class="dt-sell-button-container"><button class="dt-button dt-sell-button">Sell</button></div>
+    </div>
+  </div>
+
+  <div class="bankInterface hidden"></div>
+
   <script src="scripts.js"></script>
 </body>
 

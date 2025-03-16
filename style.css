@@ -262,18 +262,178 @@ div .icon {
   grid-area: 3 / 2 /5 / 3;
   display: flex;
   justify-content: flex-end;
-}
-
-.drugAction img {
-  width: 28px;
-  height: 28px;
-  opacity: 0.5;
+  font-size: 1.5rem;
   padding-top: 3px;
-  transition: opacity 0.3s;
+  transition: color 0.3s;
+  border: none;
+  background-color: white;
+  color: var(--color2);
+  margin-right: -8px;
 }
 
-.drugAction img:hover {
-  opacity: 1;
+.drugAction:hover {
+  color: var(--color3);
+}
+
+/* ♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎ */
+/*     THIS IS THE FUNCTIONALITY TO BUY DRUGS     */
+/* ♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎ */
+
+.drug-transaction-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  z-index: 999;
+  position: absolute;
+}
+
+.dt-single-card-container {
+  display: grid;
+  gap: 5px;
+  grid-template-columns: 10px 1fr 1fr 1fr 10px;
+  grid-template-rows: 1px 130px 35px 50px 40px 10px;
+  height: 300px;
+  width: 350px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 5px 5px 12px rgba(0, 0, 0, 0.2);
+}
+
+div .dt-icon {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+}
+
+.dt-icon img {
+  position: absolute;
+  border-bottom: 2px solid var(--color7);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  width: auto;
+  height: 80%;
+  margin-left: 1rem; /*To compensate the space of the GoBack button */
+}
+
+.dt-icon {
+  grid-area: 2 / 2 / 3 / 5;
+}
+
+.dt-drug-name {
+  grid-area: 3 / 2 / 4 / 6;
+  text-align: center;
+  font-size: 28px;
+  line-height: 1;
+  font-weight: 600;
+  color: var(--color2);
+}
+
+.dt-drug-price {
+  grid-area: 4 / 2 / 5 / 3;
+  font-size: 1.7em;
+  line-height: 1.2;
+  font-weight: 600;
+  color: var(--color3);
+}
+
+.dt-drug-purchase-total {
+  grid-area: 4 / 3 / 5 / 5;
+  font-size: 1.5rem;
+  color: var(--color4);
+  line-height: 1.2;
+  font-weight: 400;
+  text-align: end;
+}
+
+.dt-pill-area {
+  grid-area: 5 / 2 / 6 / 3;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.dt-buy-button-container {
+  grid-area: 5 / 3 / 6 / 4;
+}
+
+.dt-sell-button-container {
+  grid-area: 5 / 4 / 6 / 5;
+}
+
+div .dt-buy-button-container,
+div .dt-sell-button-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.dt-buy-button,
+.dt-sell-button {
+  width: 80px;
+  height: 40px;
+  border-radius: 5px;
+  border-color: transparent;
+  background-color: var(--color1);
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+
+.dt-buy-button:hover,
+.dt-sell-button:hover,
+.dt-pill-button:hover {
+  background-color: var(--color3);
+}
+
+/* PILL BUTTON */
+
+.dt-drug-amount {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.dt-pill-button {
+  background-color: var(--color1);
+  color: var(--color7);
+  border: none;
+  border-radius: 50%;
+  width: 2em;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.2s;
+}
+
+.dt-pill {
+  background-color: var(--color7);
+  color: var(--color1);
+  border-radius: 1rem;
+  padding: 0.55rem 0.7rem;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  min-width: 1.4rem;
+}
+
+.goback {
+  grid-area: 2 / 4 / 3 / 5;
+  height: 20px;
+  width: 20px;
+  border: none;
+  justify-self: flex-end;
+  background-color: white;
+  font-size: 2rem;
+  margin-right: 0.6rem;
+  color: var(--color2);
 }
 
 /* ♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎ */
@@ -540,6 +700,34 @@ div .icon {
   width: 65px;
   justify-content: center;
   margin-right: 20px;
+}
+
+.map-overlay {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.map-overlay.active {
+  visibility: visible;
+  opacity: 1;
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.drug-transaction-container {
+  z-index: 20; /* Ensure it appears above the overlay */
+}
+
+.drug-transaction-container.hidden {
+  display: none;
+}
+
+.goback {
+  display: block; /* Ensure it is visible */
 }
 
 /* ------------- */
@@ -916,7 +1104,6 @@ div .icon {
   }
 
   .map-button {
-    backdrop-filter: blur(0px);
     position: absolute;
   }
 
@@ -937,9 +1124,8 @@ div .icon {
   .map-button:hover p,
   .map-button p:hover,
   .map-button p:hover ~ .map-button {
-    /* backdrop-filter: grayscale(100%);  */
-    backdrop-filter: blur(2px);
-    background-color: rgba(128, 128, 128, 0.219);
+    backdrop-filter: none;
+    background-color: transparent;
     color: var(--white);
   }
 
@@ -1258,4 +1444,8 @@ div .icon {
     scale: calc(0.6);
     width: 100%;
   }
+}
+
+.hidden {
+  display: none;
 }
