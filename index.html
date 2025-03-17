@@ -226,24 +226,43 @@
 
   <div class="map-overlay"></div>
 
+
+  <!--  THE POP UP FOR BUYING DRUGS  -->
   <div class="drug-transaction-container hidden">
-    <div class="dt-single-card-container">
-      <div class="dt-icon"><img src="./assets/LSD.png"></div>
-      <!-- <button class="goback"><span>&#215;</span></button> -->
-      <div class="dt-drug-name">OXYCODONE</div>
-      <div class="dt-drug-price">$<span class="dt-price">259</span></div>
-      <div class="dt-drug-purchase-total"><i class="bi bi-tag"></i> $<span class="dt-total">259</span></div>
+
+    <div class="dt-single-card-header">
+
+      <div class="dt-white-circle">
+        <div class="dt-icon"><img src="./assets/MDMA.png"></div>
+      </div>
+
+      <div class="dt-heading-text">
+        <button class="goback"><span class="goback">&#215;</span></button>
+        <div class="dt-drug-name">OXYCODONE</div>
+        <div class="dt-drug-price">$<span class="dt-price">259</span></div>
+      </div>
+
+    </div>
+
+    <div class="dt-single-card-body">
       <div class="dt-pill-area">
         <div class="dt-drug-amount">
           <button class="dt-pill-button" id="dt-decrement"><span>&#8722;</span></button>
           <div class="dt-pill" id="dt-pill">0</div>
           <button class="dt-pill-button" id="dt-increment"><span>&#43;</span></button>
         </div>
+        <p class="dt-you-have">You have <b>6</b> in your pocket</p>
+        <div class="dt-drug-purchase-total"><span>$</span><span class="dt-total">259</span></div>
+
       </div>
       <div class="dt-buy-button-container"><button class="dt-button dt-buy-button">Buy</button></div>
       <div class="dt-sell-button-container"><button class="dt-button dt-sell-button">Sell</button></div>
     </div>
+
   </div>
+
+
+
 
   <div class="bankInterface hidden"></div>
 

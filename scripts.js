@@ -147,6 +147,13 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// NEED TO ADD FUNCTIONALITY TO CLOSE THE 'DRUG ACTION' CONTAINER
-// So far, the goback button was not working, probably because it is hidden on load
-// I need to investigate how to make it work
+// This is the GoBack button to close the drug actions... I had to redesign the whole thing :(
+document.querySelector(".goback").addEventListener("click", () => {
+  const drugTransactionContainer = document.querySelector(
+    ".drug-transaction-container"
+  );
+  const overlay = document.querySelector(".map-overlay");
+
+  drugTransactionContainer.classList.add("hidden");
+  overlay.classList.remove("active");
+});
