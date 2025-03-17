@@ -46,11 +46,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const dtPillElement = drugTransactionContainer.querySelector("#dt-pill");
   const dtPriceElement = drugTransactionContainer.querySelector(".dt-price");
 
-  const registerSound = new Audio("assets/register.mp3");
+  const coinSound = new Audio("sounds/coins.mp3");
 
   function playSound() {
-    registerSound.currentTime = 0;
-    registerSound.play();
+    coinSound.currentTime = 0;
+    coinSound.play();
   }
 
   const hideTransactionContainer = (delay = 0) => {
