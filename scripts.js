@@ -1,3 +1,7 @@
+function closeModal() {
+  document.getElementById("instructions").style.display = "none";
+}
+
 /////////////////////////////////////////////////////
 //////////        MAP FOR MOBILE        /////////////
 /////////////////////////////////////////////////////
@@ -201,73 +205,80 @@ document.querySelector(".goback").addEventListener("click", () => {
 
 document.addEventListener("DOMContentLoaded", () => {
   // Selectors
+  const dayOfWeekElement = document.querySelector(".day-of-week");
+  const dayOfMonthElement = document.querySelector(".day-of-month");
   const neighbourhoodNameElement = document.querySelector(
     ".neighbourhood-name"
   );
 
+  // Days of the week in order
+  const daysOfWeek = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];
+  let currentDayIndex = 0; // Start at MON (index 0)
+  let currentDayOfMonth = 1; // Start at day 1
+
   // Drug price ranges
   const drugPriceRanges = {
     CANNABIS: {
-      regular: [100, 400],
+      regular: [100, 300],
       lowRange: [
-        [10, 99],
-        [401, 750],
+        [60, 99],
+        [301, 350],
       ],
     },
     COCAINE: {
-      regular: [70, 190],
+      regular: [80, 170],
       lowRange: [
-        [20, 69],
-        [191, 500],
+        [65, 79],
+        [171, 200],
       ],
     },
     HEROIN: {
-      regular: [80, 350],
+      regular: [150, 350],
       lowRange: [
-        [20, 79],
-        [351, 750],
+        [130, 149],
+        [351, 400],
       ],
     },
     MDMA: {
       regular: [20, 50],
       lowRange: [
-        [1, 19],
-        [51, 200],
+        [15, 19],
+        [51, 80],
       ],
     },
     LSD: {
       regular: [25, 45],
       lowRange: [
-        [10, 24],
-        [46, 150],
+        [18, 24],
+        [46, 80],
       ],
     },
     FENTANYL: {
       regular: [150, 440],
       lowRange: [
-        [50, 149],
-        [441, 800],
+        [120, 149],
+        [441, 550],
       ],
     },
     OXYCODONE: {
       regular: [25, 95],
       lowRange: [
-        [10, 24],
-        [96, 250],
+        [18, 24],
+        [96, 180],
       ],
     },
     KETAMINE: {
-      regular: [70, 150],
+      regular: [90, 150],
       lowRange: [
-        [15, 69],
-        [151, 360],
+        [70, 89],
+        [151, 200],
       ],
     },
     ADDERALL: {
       regular: [10, 40],
       lowRange: [
-        [1, 9],
-        [41, 100],
+        [6, 9],
+        [41, 70],
       ],
     },
   };
@@ -277,8 +288,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const ranges = drugPriceRanges[drugName];
     const randomChance = Math.random(); // Random number between 0 and 1
 
-    if (randomChance < 0.8) {
-      // 80% chance: Regular price range
+    if (randomChance < 0.9) {
+      // 90% chance: Regular price range
       const [min, max] = ranges.regular;
       return Math.floor(Math.random() * (max - min + 1)) + min;
     } else {
@@ -304,6 +315,17 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // Function to update the day
+  function updateDay() {
+    // Update the day of the week
+    currentDayIndex = (currentDayIndex + 1) % daysOfWeek.length; // Loop back to MON after SUN
+    dayOfWeekElement.innerHTML = daysOfWeek[currentDayIndex];
+
+    // Update the day of the month
+    currentDayOfMonth += 1;
+    dayOfMonthElement.innerHTML = currentDayOfMonth;
+  }
+
   // Add event listeners to all map buttons
   document.querySelectorAll(".map-button").forEach((button) => {
     button.addEventListener("click", () => {
@@ -313,6 +335,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Update drug prices
       updateDrugPrices();
+
+      // Update the day
+      updateDay();
     });
   });
 
