@@ -349,6 +349,16 @@ body {
   background-color: var(--color5);
 }
 
+.dt-pill-button:disabled,
+.dt-buy-button:disabled,
+.dt-sell-button:disabled {
+  background-color: #ccc; /* Light grey background */
+  color: #666; /* Dimmed text */
+  cursor: not-allowed; /* Shows "not-allowed" cursor */
+  opacity: 0.6; /* Makes it look faded */
+  pointer-events: none; /* Prevents any interaction */
+}
+
 .dt-pill {
   width: 120px;
   height: 42px;

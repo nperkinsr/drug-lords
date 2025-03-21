@@ -45,6 +45,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const dtTotalElement = drugTransactionContainer.querySelector(".dt-total");
   const dtPillElement = drugTransactionContainer.querySelector("#dt-pill");
   const dtPriceElement = drugTransactionContainer.querySelector(".dt-price");
+  const dtYouHaveElement =
+    drugTransactionContainer.querySelector(".dt-you-have");
 
   const coinSound = new Audio("sounds/coins.mp3");
 
@@ -66,7 +68,39 @@ document.addEventListener("DOMContentLoaded", () => {
     const total = price * amount;
 
     dtTotalElement.textContent = total.toString();
-    dtTotalElement.style.color = total > moneyInHand ? "red" : "inherit";
+
+    // Update buy button state
+    if (total > moneyInHand) {
+      buyButton.disabled = true; // Disable the button
+    } else {
+      buyButton.disabled = false; // Enable the button
+    }
+  };
+
+  const updateDrugInPocketDisplay = () => {
+    const currentInPocket = parseInt(drugInPocketElement.textContent);
+
+    if (currentInPocket === 0) {
+      dtYouHaveElement.innerHTML = "You don't have any in your pocket";
+    } else {
+      dtYouHaveElement.innerHTML = `You have <b>${currentInPocket}</b> in your pocket`;
+    }
+
+    // Update color for drugs with 1 or more in pocket
+    const drugInPocketContainer = drugInPocketElement.closest(".drugInPocket");
+    if (currentInPocket >= 1) {
+      drugInPocketContainer.style.color = "#ff6289"; // Apply color to all text
+      sellButton.disabled = false; // Enable the sell button
+    } else {
+      drugInPocketContainer.style.color = ""; // Reset to default
+      sellButton.disabled = true; // Disable the sell button
+    }
+
+    // Check if dt-pill exceeds drugInPocketNumber
+    const pillAmount = parseInt(dtPillElement.textContent);
+    if (pillAmount > currentInPocket) {
+      sellButton.disabled = true; // Disable the sell button
+    }
   };
 
   // Add event listeners to all .drugAction buttons
@@ -90,8 +124,9 @@ document.addEventListener("DOMContentLoaded", () => {
         drugName;
       dtPriceElement.textContent = drugPrice;
       dtTotalElement.textContent = drugPrice;
-      dtPillElement.textContent = "1"; // Reset count when opening? or maybe not?
+      dtPillElement.textContent = "1"; // Reset count when opening
       updateTotal();
+      updateDrugInPocketDisplay();
 
       // SHOWING THE TRANSACTION CONTAINER
       drugTransactionContainer.classList.remove("hidden");
@@ -105,6 +140,7 @@ document.addEventListener("DOMContentLoaded", () => {
       parseInt(dtPillElement.textContent) + 1
     ).toString();
     updateTotal();
+    updateDrugInPocketDisplay();
   });
 
   document.querySelector("#dt-decrement").addEventListener("click", () => {
@@ -112,6 +148,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (currentAmount > 1) {
       dtPillElement.textContent = (currentAmount - 1).toString();
       updateTotal();
+      updateDrugInPocketDisplay();
     }
   });
 
@@ -127,8 +164,7 @@ document.addEventListener("DOMContentLoaded", () => {
           parseInt(drugInPocketElement.textContent) + amountToBuy;
         playSound();
         hideTransactionContainer(400);
-      } else {
-        dtTotalElement.style.color = "red"; // TEMPORARY UNTIL I COME UP WITH A BETTER IDEA
+        updateDrugInPocketDisplay();
       }
     });
 
@@ -142,6 +178,7 @@ document.addEventListener("DOMContentLoaded", () => {
         drugInPocketElement.textContent = currentInPocket - amountToSell;
         playSound();
         hideTransactionContainer(400);
+        updateDrugInPocketDisplay();
       }
     });
   }
