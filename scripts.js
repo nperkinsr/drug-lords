@@ -194,3 +194,128 @@ document.querySelector(".goback").addEventListener("click", () => {
   drugTransactionContainer.classList.add("hidden");
   overlay.classList.remove("active");
 });
+
+/////////////////////////////////////////////////////
+//////////         DRUG PRICES          /////////////
+/////////////////////////////////////////////////////
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Selectors
+  const neighbourhoodNameElement = document.querySelector(
+    ".neighbourhood-name"
+  );
+
+  // Drug price ranges
+  const drugPriceRanges = {
+    CANNABIS: {
+      regular: [100, 400],
+      lowRange: [
+        [10, 99],
+        [401, 750],
+      ],
+    },
+    COCAINE: {
+      regular: [70, 190],
+      lowRange: [
+        [20, 69],
+        [191, 500],
+      ],
+    },
+    HEROIN: {
+      regular: [80, 350],
+      lowRange: [
+        [20, 79],
+        [351, 750],
+      ],
+    },
+    MDMA: {
+      regular: [20, 50],
+      lowRange: [
+        [1, 19],
+        [51, 200],
+      ],
+    },
+    LSD: {
+      regular: [25, 45],
+      lowRange: [
+        [10, 24],
+        [46, 150],
+      ],
+    },
+    FENTANYL: {
+      regular: [150, 440],
+      lowRange: [
+        [50, 149],
+        [441, 800],
+      ],
+    },
+    OXYCODONE: {
+      regular: [25, 95],
+      lowRange: [
+        [10, 24],
+        [96, 250],
+      ],
+    },
+    KETAMINE: {
+      regular: [70, 150],
+      lowRange: [
+        [15, 69],
+        [151, 360],
+      ],
+    },
+    ADDERALL: {
+      regular: [10, 40],
+      lowRange: [
+        [1, 9],
+        [41, 100],
+      ],
+    },
+  };
+
+  // Function to generate a random price for a drug
+  function getRandomPrice(drugName) {
+    const ranges = drugPriceRanges[drugName];
+    const randomChance = Math.random(); // Random number between 0 and 1
+
+    if (randomChance < 0.8) {
+      // 80% chance: Regular price range
+      const [min, max] = ranges.regular;
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    } else {
+      // 20% chance: Low range
+      const isLowRange = Math.random() < 0.5; // 50% chance for low or high range
+      const [lowMin, lowMax] = isLowRange
+        ? ranges.lowRange[0]
+        : ranges.lowRange[1];
+      return Math.floor(Math.random() * (lowMax - lowMin + 1)) + lowMin;
+    }
+  }
+
+  // Function to update all drug prices
+  function updateDrugPrices() {
+    document.querySelectorAll(".singleCardContainer").forEach((card) => {
+      const drugName = card.querySelector(".drugName").textContent.trim();
+      const priceElement = card.querySelector(".drugPrice span");
+
+      if (drugPriceRanges[drugName]) {
+        const newPrice = getRandomPrice(drugName);
+        priceElement.textContent = newPrice; // Update the price in the DOM
+      }
+    });
+  }
+
+  // Add event listeners to all map buttons
+  document.querySelectorAll(".map-button").forEach((button) => {
+    button.addEventListener("click", () => {
+      // Update the neighbourhood name
+      const neighbourhoodName = button.getAttribute("data-name");
+      neighbourhoodNameElement.innerHTML = neighbourhoodName;
+
+      // Update drug prices
+      updateDrugPrices();
+    });
+  });
+
+  // Initialize prices on page load
+  updateDrugPrices();
+});

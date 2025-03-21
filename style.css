@@ -1,11 +1,11 @@
 :root {
-  --background: #394c5c; /* White */
+  --background: #77879d; /* White */
   --black: #000000; /* Black */
   --white: #ffffff; /* White */
   --color1: #564e50; /* Dark Warm Grey */
   --color2: #c4b3c1; /* Light Lilac */
   --color3: #a4d6ff; /* Liight Blue */
-  --color4: #dad0d0; /* Light Grey */
+  --color4: #8ed01d; /* Green */
   --color5: #ff6289; /* Redish Pink */
   --color6: #fe9fb7; /* Red */
   --color7: #ededed; /* Very Light Grey */
@@ -13,11 +13,49 @@
 }
 
 body {
-  background-color: var(--background);
   display: flex;
   justify-content: center;
   align-items: center;
   font-family: "Helvetica", sans-serif;
+  background: linear-gradient(
+      45deg,
+      #0000 calc(25% / 3),
+      #6e7d93 0 calc(50% / 3),
+      #0000 0 calc(250% / 3),
+      #6e7d93 0 calc(275% / 3),
+      #0000 0
+    ),
+    linear-gradient(
+      45deg,
+      #6e7d93 calc(25% / 3),
+      #0000 0 calc(50% / 3),
+      #6e7d93 0 25%,
+      #0000 0 75%,
+      #6e7d93 0 calc(250% / 3),
+      #0000 0 calc(275% / 3),
+      #6e7d93 0
+    ),
+    linear-gradient(
+      -45deg,
+      #0000 calc(25% / 3),
+      #6e7d93 0 calc(50% / 3),
+      #0000 0 calc(250% / 3),
+      #6e7d93 0 calc(275% / 3),
+      #0000 0
+    ),
+    linear-gradient(
+        -45deg,
+        #6e7d93 calc(25% / 3),
+        #0000 0 calc(50% / 3),
+        #6e7d93 0 25%,
+        #0000 0 75%,
+        #6e7d93 0 calc(250% / 3),
+        #0000 0 calc(275% / 3),
+        #6e7d93 0
+      )
+      #77879d;
+  background-size: 36px 36px;
+  background-position: 0 0, 18px 18px;
 }
 
 /* ♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎ */
@@ -474,7 +512,7 @@ body {
   width: 140px;
   text-decoration: none;
   color: var(--white);
-  background-color: var(--color1);
+  background-color: var(--background);
   padding: 10px 0;
   margin: 0;
   font-weight: 600;
@@ -493,7 +531,7 @@ body {
 }
 
 .map-button:hover p {
-  background-color: var(--color8);
+  background-color: var(--color5);
 }
 
 .industrial {
