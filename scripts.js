@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
 /////////////////////////////////////////////////////
 
 document.addEventListener("DOMContentLoaded", () => {
-  // NEW SELECTORS FROM THE CLASSES
+  // Selectors
   const drugTransactionContainer = document.querySelector(
     ".drug-transaction-container"
   );
@@ -69,21 +69,20 @@ document.addEventListener("DOMContentLoaded", () => {
     dtTotalElement.style.color = total > moneyInHand ? "red" : "inherit";
   };
 
+  // Add event listeners to all .drugAction buttons
   document.querySelectorAll(".drugAction").forEach((button) => {
     button.addEventListener("click", (event) => {
-      const singleCardContent = event.target.closest(".singleCardContent");
+      const singleCardBody = event.target.closest(".singleCardContainer");
 
       // GETTING THE DRUG DETAILS
-      const drugImage = singleCardContent.querySelector(".icon img").src;
-      const drugName = singleCardContent
+      const drugImage = singleCardBody.querySelector(".icon img").src;
+      const drugName = singleCardBody
         .querySelector(".drugName")
         .textContent.trim();
-      const drugPrice = singleCardContent
+      const drugPrice = singleCardBody
         .querySelector(".drugPrice span")
         .textContent.trim();
-      drugInPocketElement = singleCardContent.querySelector(
-        ".drugInPocketNumber"
-      );
+      drugInPocketElement = singleCardBody.querySelector(".drugInPocketNumber");
 
       // UPDATES ON THE INTERFACE
       drugTransactionContainer.querySelector(".dt-icon img").src = drugImage;
@@ -91,15 +90,16 @@ document.addEventListener("DOMContentLoaded", () => {
         drugName;
       dtPriceElement.textContent = drugPrice;
       dtTotalElement.textContent = drugPrice;
-      dtPillElement.textContent = "1"; // Reset count when opening
+      dtPillElement.textContent = "1"; // Reset count when opening? or maybe not?
       updateTotal();
 
-      // SHOWING THE TRANSACTION THINGY
+      // SHOWING THE TRANSACTION CONTAINER
       drugTransactionContainer.classList.remove("hidden");
       overlay.classList.add("active");
     });
   });
 
+  // Add event listeners for increment and decrement buttons
   document.querySelector("#dt-increment").addEventListener("click", () => {
     dtPillElement.textContent = (
       parseInt(dtPillElement.textContent) + 1
