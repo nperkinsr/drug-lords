@@ -293,11 +293,12 @@ document.addEventListener("DOMContentLoaded", () => {
       const [min, max] = ranges.regular;
       return Math.floor(Math.random() * (max - min + 1)) + min;
     } else {
-      // 20% chance: Low range
+      // 10% chance: Low range
       const isLowRange = Math.random() < 0.5; // 50% chance for low or high range
       const [lowMin, lowMax] = isLowRange
         ? ranges.lowRange[0]
         : ranges.lowRange[1];
+      // This is called TERNARY OPERATOR, shorthand of if...else: condition ? valueIfTrue : valueIfFalse;
       return Math.floor(Math.random() * (lowMax - lowMin + 1)) + lowMin;
     }
   }
@@ -315,10 +316,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Function to update the day
+  // Function to update the day on the calendar thingy
   function updateDay() {
     // Update the day of the week
-    currentDayIndex = (currentDayIndex + 1) % daysOfWeek.length; // Loop back to MON after SUN
+    currentDayIndex = (currentDayIndex + 1) % daysOfWeek.length; // This to loop back to MON after SUN
     dayOfWeekElement.innerHTML = daysOfWeek[currentDayIndex];
 
     // Update the day of the month
@@ -326,21 +327,46 @@ document.addEventListener("DOMContentLoaded", () => {
     dayOfMonthElement.innerHTML = currentDayOfMonth;
   }
 
-  // Add event listeners to all map buttons
+  // All map buttons
   document.querySelectorAll(".map-button").forEach((button) => {
     button.addEventListener("click", () => {
       // Update the neighbourhood name
       const neighbourhoodName = button.getAttribute("data-name");
       neighbourhoodNameElement.innerHTML = neighbourhoodName;
 
-      // Update drug prices
       updateDrugPrices();
-
-      // Update the day
       updateDay();
     });
   });
 
   // Initialize prices on page load
   updateDrugPrices();
+});
+
+/////////////////////////////////////////////////////
+//////////        BUTTON SOUNDS         /////////////
+/////////////////////////////////////////////////////
+
+document.addEventListener("DOMContentLoaded", () => {
+  const buttonClickSound = new Audio("sounds/buttonClick.mp3");
+
+  function playButtonClickSound() {
+    buttonClickSound.currentTime = 0; // Reset the sound to the beginning
+    buttonClickSound.play();
+  }
+
+  // All the thingies that I want to have the same sound... may add more
+  const clickableElements = [
+    ...document.querySelectorAll(".map-button"), // All links with .map-button
+    ...document.querySelectorAll(".bank-button"), // All links with .bank-button
+    ...document.querySelectorAll(".drugAction"), // All buttons with .drugAction
+    document.querySelector(".close-btn"), // The button with .close-btn
+    document.querySelector(".goback"), // The button with .goback
+  ];
+
+  clickableElements.forEach((element) => {
+    if (element) {
+      element.addEventListener("click", playButtonClickSound);
+    }
+  });
 });

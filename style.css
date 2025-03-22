@@ -58,7 +58,6 @@ body {
   background-position: 0 0, 18px 18px;
 }
 
-
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -104,7 +103,7 @@ h4 {
 }
 
 .close-btn:hover {
-background-color: var(--black);
+  background-color: var(--black);
 }
 
 /* ♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎♡︎ */
@@ -793,7 +792,11 @@ background-color: var(--black);
 }
 
 .drug-transaction-container {
-  z-index: 20; /* Ensure it appears above the overlay */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 20;
 }
 
 .drug-transaction-container.hidden {
