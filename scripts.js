@@ -138,23 +138,64 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Add event listeners for increment and decrement buttons
-  document.querySelector("#dt-increment").addEventListener("click", () => {
+  let intervalId = null; // To store the interval ID for clearing later
+
+  const startAdjustingPill = (adjustmentFunction) => {
+    adjustmentFunction(); // Perform the adjustment immediately
+    intervalId = setInterval(adjustmentFunction, 200); // Repeat every 200ms
+  };
+
+  const stopAdjustingPill = () => {
+    clearInterval(intervalId); // Stop the interval
+    intervalId = null;
+  };
+
+  const incrementPill = () => {
     dtPillElement.textContent = (
       parseInt(dtPillElement.textContent) + 1
     ).toString();
     updateTotal();
     updateDrugInPocketDisplay();
-  });
+  };
 
-  document.querySelector("#dt-decrement").addEventListener("click", () => {
+  const decrementPill = () => {
     const currentAmount = parseInt(dtPillElement.textContent);
     if (currentAmount > 1) {
       dtPillElement.textContent = (currentAmount - 1).toString();
       updateTotal();
       updateDrugInPocketDisplay();
     }
+  };
+
+  // Add event listeners for increment and decrement buttons
+  const incrementButton = document.querySelector("#dt-increment");
+  const decrementButton = document.querySelector("#dt-decrement");
+
+  incrementButton.addEventListener("mousedown", () => {
+    startAdjustingPill(incrementPill);
   });
+
+  decrementButton.addEventListener("mousedown", () => {
+    startAdjustingPill(decrementPill);
+  });
+
+  // Stop adjusting when the mouse button is released
+  document.addEventListener("mouseup", stopAdjustingPill);
+  document.addEventListener("mouseleave", stopAdjustingPill); // In case the mouse leaves the button area
+
+  // For touch devices, use touchstart and touchend
+  incrementButton.addEventListener("touchstart", (event) => {
+    event.preventDefault(); // Prevent accidental clicks
+    startAdjustingPill(incrementPill);
+  });
+
+  decrementButton.addEventListener("touchstart", (event) => {
+    event.preventDefault(); // Prevent accidental clicks
+    startAdjustingPill(decrementPill);
+  });
+
+  document.addEventListener("touchend", stopAdjustingPill);
+  document.addEventListener("touchcancel", stopAdjustingPill);
 
   if (buyButton && sellButton) {
     buyButton.addEventListener("click", () => {

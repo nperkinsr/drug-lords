@@ -28,27 +28,29 @@
 
   <div class="main">
 
-    <!-- ⭐️ BEGINNING OF GAME LOGO ⭐️ -->
+    <!-- =============== -->
+    <!-- ⭐️ GAME LOGO ⭐️ -->
+    <!-- =============== -->
 
     <section id="gameLogo" class="gameLogo">
       <h1 class="drugLords">DRUG LORDS</h1>
     </section>
 
-
-    <!-- ⭐️ BEGINNING OF BANK ⭐️ -->
+    <!-- ========== -->
+    <!-- ⭐️ BANK ⭐️ -->
+    <!-- ========== -->
     <section id="bank" class="bank">
       <div class="bank-content">
         <img src="./assets/bank.png" width="85px;" alt="bank" />
         <div class="balance">BALANCE</div>
-        <div class="money-in-bank">$<span>2750</span></div>
-        <a class="bank-button deposit" href="#">DEPOSIT</a>
-        <a class="bank-button withdraw" href="#">WITHDRAW</a>
+        <div class="money-in-bank">$<span>700</span></div>
+        <a class="bank-button" href="#">ACCOUNT</a>
       </div>
     </section>
 
-
-    <!-- ⭐️ BEGINNING OF MONEY IN HAND ⭐️ -->
-
+    <!-- =================== -->
+    <!-- ⭐️ MONEY IN HAND ⭐️ -->
+    <!-- =================== -->
     <section id="moneyInHand" class="moneyInHand">
       <div class="money-in-hand-content">
         <img src="./assets/hands.png" width="70px;" alt="hands" />
@@ -57,8 +59,9 @@
 
     </section>
 
-
-    <!-- ⭐️ BEGINNING OF MAP SECTION ⭐️ -->
+    <!-- ===================== -->
+    <!-- ⭐️   MAP SECTION   ⭐️ -->
+    <!-- ===================== -->
     <section id="button-map-mobile">
       <a href="#" class="button-tablet">
         <p class="end-day">END DAY ❯❯</p>
@@ -69,7 +72,7 @@
 
     <section id="map" class="map">
       <div class="you-are-in">YOU ARE IN</div>
-      <div class="neighbourhood-name">Smuggleston</div>
+      <div class="neighbourhood-name">THE CITY OF HUSHINGTON</div>
 
       <div class="map-area">
         <a href="#" class="map-button industrial" data-name="Industrial Area">
@@ -94,8 +97,9 @@
     </section>
 
 
-    <!-- ⭐️ BEGINNING OF DRUGS BOARD SECTION ⭐️ -->
-
+    <!-- ========================= -->
+    <!-- ⭐️ DRUGS BOARD SECTION ⭐️ -->
+    <!-- ========================= -->
     <section id="drugBoard" class="drugBoard">
       <div class="drugsContainer">
 
@@ -229,8 +233,9 @@
       </div>
     </section>
 
-
-    <!-- ⭐️ BEGINNING OF NEWS BOARD SECTION ⭐️ -->
+    <!-- ========================== -->
+    <!-- ⭐️  NEWS BOARD SECTION  ⭐️ -->
+    <!-- ========================== -->
 
     <section id="newsBoard" class="newsBoard">
       <img src="./assets/news.png" width="90px;" />
@@ -243,8 +248,9 @@
       </div>
     </section>
 
-
-    <!-- ⭐️ BEGINNING OF DATE & WEATHER SECTION ⭐️ -->
+    <!-- ============================ -->
+    <!-- ⭐️ DATE & WEATHER SECTION ⭐️ -->
+    <!-- ============================ -->
 
     <section id="dateAndWeather" class="dateAndWeather">
       <div class="date-weather-container">
@@ -264,7 +270,9 @@
   <div class="map-overlay"></div>
 
 
-  <!--  THE POP UP FOR BUYING DRUGS  -->
+  <!-- ========================== -->
+  <!-- === BUYING DRUGS MODAL === -->
+  <!-- ========================== -->
   <div class="drug-transaction-container hidden">
 
     <div class="dt-single-card-header">
@@ -299,7 +307,54 @@
   </div>
 
 
-  <!-- START OF THE INSTRUCTIONS FOR THE GAME  -->
+  <!-- ========================= -->
+  <!-- ====== BANK MODAL ======= -->
+  <!-- ========================= -->
+  <div class="bank-transaction-container hidden">
+
+    <div class="bt-single-card-header">
+
+      <div class="bt-white-circle">
+        <div class="bt-icon"><img src="./assets/bank.png"></div>
+      </div>
+
+      <div class="bt-heading-text">
+        <button class="goback-bank"><span class="goback-bank">&#215;</span></button>
+        <div class="bt-bank-name">LEND-A-LOT</div>
+        <div class="bt-bank-tagline">"Easy Loans, Tough Collectors"</div>
+      </div>
+
+    </div>
+
+    <div class="bt-single-card-body">
+
+      <p class="bt-loan-info">
+        At Lend-A-Lot, we can lend you up to $1000, no questions asked.
+        But pay soon, or we'll send our "friendly" collectors for a chat.
+      </p>
+
+      <h3>BALANCE</h3>
+      <div class="bt-balance-display">
+        <span class="balance-symbol">-</span>$<span class="balanceInBank">700</span>
+      </div>
+
+      <div class="bt-input-container">
+        <input type="number" id="bt-amount" class="bt-amount" placeholder="Enter amount">
+      </div>
+
+      <div class="bt-button-container">
+        <button class="bt-button bt-deposit">DEPOSIT</button>
+        <button class="bt-button bt-withdraw">WITHDRAW</button>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ========================== -->
+  <!--  INSTRUCTIONS FOR THE GAME  -->
+  <!-- ========================== -->
 
   <div class="modal-overlay instructions hidden" id="instructions">
     <div class="modal">
