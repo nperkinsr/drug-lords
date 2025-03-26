@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
   );
   const mapOverlay = document.createElement("div");
 
-  mapOverlay.id = "map-overlay";
+  mapOverlay.id = "dark-overlay";
   document.body.appendChild(mapOverlay);
 
   buttonEndDay.addEventListener("click", function (event) {
@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
   );
   const buyButton = drugTransactionContainer.querySelector(".dt-buy-button");
   const sellButton = drugTransactionContainer.querySelector(".dt-sell-button");
-  const overlay = document.querySelector(".map-overlay");
+  const overlay = document.querySelector(".dark-overlay");
   const moneyDisplay = document.querySelector(".money-in-hands span");
   let moneyInHand = parseInt(moneyDisplay.textContent);
   let drugInPocketElement = null;
@@ -73,11 +73,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     dtTotalElement.textContent = total.toString();
 
-    // Update buy button state
-    if (total > moneyInHand) {
-      buyButton.disabled = true; // Disable the button
+    // Dynamically fetch the updated money-in-hands value
+    const updatedMoneyInHands = parseInt(
+      document.querySelector(".money-in-hands span").textContent
+    );
+
+    // Update buy button state based on the updated money-in-hands value
+    if (total > updatedMoneyInHands) {
+      buyButton.disabled = true; // Disable the button if not enough money in hands
     } else {
-      buyButton.disabled = false; // Enable the button
+      buyButton.disabled = false; // Enable the button if enough money in hands
     }
   };
 
@@ -93,17 +98,17 @@ document.addEventListener("DOMContentLoaded", () => {
     // Update color for drugs with 1 or more in pocket
     const drugInPocketContainer = drugInPocketElement.closest(".drugInPocket");
     if (currentInPocket >= 1) {
-      drugInPocketContainer.style.color = "#ff6289"; // Apply color to all text
-      sellButton.disabled = false; // Enable the sell button
+      drugInPocketContainer.style.color = "#ff6289";
+      sellButton.disabled = false;
     } else {
-      drugInPocketContainer.style.color = ""; // Reset to default
-      sellButton.disabled = true; // Disable the sell button
+      drugInPocketContainer.style.color = "";
+      sellButton.disabled = true;
     }
 
     // Check if dt-pill exceeds drugInPocketNumber
     const pillAmount = parseInt(dtPillElement.textContent);
     if (pillAmount > currentInPocket) {
-      sellButton.disabled = true; // Disable the sell button
+      sellButton.disabled = true;
     }
   };
 
@@ -140,6 +145,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let intervalId = null; // To store the interval ID for clearing later
 
+  // So when we click the pill buttons we don't have to click a bunch of times
   const startAdjustingPill = (adjustmentFunction) => {
     adjustmentFunction(); // Perform the adjustment immediately
     intervalId = setInterval(adjustmentFunction, 200); // Repeat every 200ms
@@ -181,9 +187,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Stop adjusting when the mouse button is released
   document.addEventListener("mouseup", stopAdjustingPill);
-  document.addEventListener("mouseleave", stopAdjustingPill); // In case the mouse leaves the button area
+  document.addEventListener("mouseleave", stopAdjustingPill);
 
-  // For touch devices, use touchstart and touchend
+  // For touch devices
   incrementButton.addEventListener("touchstart", (event) => {
     event.preventDefault(); // Prevent accidental clicks
     startAdjustingPill(incrementPill);
@@ -199,31 +205,41 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (buyButton && sellButton) {
     buyButton.addEventListener("click", () => {
-      const total = parseInt(dtTotalElement.textContent);
-      const amountToBuy = parseInt(dtPillElement.textContent);
+      const total = parseInt(dtTotalElement.textContent); // Total cost of the drugs
+      const amountToBuy = parseInt(dtPillElement.textContent); // Number of drugs to buy
 
-      if (total <= moneyInHand) {
-        moneyInHand -= total;
-        moneyDisplay.textContent = moneyInHand;
+      // Dynamically fetch the updated money-in-hands value
+      const updatedMoneyInHands = parseInt(
+        document.querySelector(".money-in-hands span").textContent
+      );
+
+      if (total <= updatedMoneyInHands) {
+        // Proceed with the purchase if the user has enough money in hands
+        moneyInHand = updatedMoneyInHands - total; // Deduct the total cost from money in hands
+        moneyDisplay.textContent = moneyInHand; // Update the money display
         drugInPocketElement.textContent =
-          parseInt(drugInPocketElement.textContent) + amountToBuy;
-        playSound();
-        hideTransactionContainer(400);
-        updateDrugInPocketDisplay();
+          parseInt(drugInPocketElement.textContent) + amountToBuy; // Update the number of drugs in pocket
+        playSound(); // Play the purchase sound
+        hideTransactionContainer(400); // Hide the transaction container
+        updateDrugInPocketDisplay(); // Update the drug display
+      } else {
+        // This should never happen if the button is properly disabled
+        console.error("Purchase attempted with insufficient funds.");
       }
     });
 
     sellButton.addEventListener("click", () => {
-      const amountToSell = parseInt(dtPillElement.textContent);
-      const currentInPocket = parseInt(drugInPocketElement.textContent);
+      const amountToSell = parseInt(dtPillElement.textContent); // Number of drugs to sell
+      const currentInPocket = parseInt(drugInPocketElement.textContent); // Current drugs in pocket
+
       if (amountToSell <= currentInPocket) {
-        const price = parseInt(dtPriceElement.textContent);
-        moneyInHand += price * amountToSell;
-        moneyDisplay.textContent = moneyInHand;
-        drugInPocketElement.textContent = currentInPocket - amountToSell;
-        playSound();
-        hideTransactionContainer(400);
-        updateDrugInPocketDisplay();
+        const price = parseInt(dtPriceElement.textContent); // Price per drug
+        moneyInHand += price * amountToSell; // Add the total sale amount to money in hands
+        moneyDisplay.textContent = moneyInHand; // Update the money display
+        drugInPocketElement.textContent = currentInPocket - amountToSell; // Update the number of drugs in pocket
+        playSound(); // Play the sale sound
+        hideTransactionContainer(400); // Hide the transaction container
+        updateDrugInPocketDisplay(); // Update the drug display
       }
     });
   }
@@ -234,7 +250,7 @@ document.querySelector(".goback").addEventListener("click", () => {
   const drugTransactionContainer = document.querySelector(
     ".drug-transaction-container"
   );
-  const overlay = document.querySelector(".map-overlay");
+  const overlay = document.querySelector(".dark-overlay");
 
   drugTransactionContainer.classList.add("hidden");
   overlay.classList.remove("active");
@@ -410,4 +426,164 @@ document.addEventListener("DOMContentLoaded", () => {
       element.addEventListener("click", playButtonClickSound);
     }
   });
+});
+
+/////////////////////////////////////////////////////
+//////////        BANK ACTIONS         /////////////
+/////////////////////////////////////////////////////
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Selectors
+  const bankTransactionContainer = document.querySelector(
+    ".bank-transaction-container"
+  );
+  const bankButton = document.querySelector(".bank-button");
+  const gobackBankButton = document.querySelector(".goback-bank");
+  const overlay = document.querySelector(".dark-overlay"); // Reuse the .dark-overlay
+
+  // Show the bank modal and overlay when the .bank-button is clicked
+  if (bankButton) {
+    bankButton.addEventListener("click", () => {
+      bankTransactionContainer.classList.remove("hidden"); // Show the modal
+      overlay.classList.add("active"); // Show the overlay
+    });
+  }
+
+  // Hide the bank modal and overlay when the .goback-bank button is clicked
+  if (gobackBankButton) {
+    gobackBankButton.addEventListener("click", () => {
+      bankTransactionContainer.classList.add("hidden"); // Hide the modal
+      overlay.classList.remove("active"); // Hide the overlay
+    });
+  }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Selectors
+  const balanceInBankElement = document.querySelector(".balanceInBank");
+  const moneyInHandsElement = document.querySelector(".money-in-hands span");
+  const moneyInBankElement = document.querySelector(".money-in-bank span");
+  const depositButton = document.querySelector(".bt-deposit");
+  const withdrawButton = document.querySelector(".bt-withdraw");
+  const gobackBankButton = document.querySelector(".goback-bank");
+  const amountInput = document.querySelector("#bt-amount");
+  const bankBalanceDisplay = document.querySelector(".bt-balance-display");
+  const moneyInBankDisplay = document.querySelector(".money-in-bank");
+  const loanInfoElement = document.querySelector(".bt-loan-info");
+  const buttonClickSound = new Audio("sounds/buttonClick.mp3");
+  const errorSound = new Audio("sounds/error.mp3");
+
+  const MAX_BANK_LOAN = 1000; // Maximum loan limit
+
+  // Function to play the button click sound
+  function playButtonClickSound() {
+    buttonClickSound.currentTime = 0; // Reset the sound to the beginning
+    buttonClickSound.play();
+  }
+
+  // Function to play the error sound
+  function playErrorSound() {
+    errorSound.currentTime = 0; // Reset the sound to the beginning
+    errorSound.play();
+  }
+
+  // Function to format the balance with the correct sign and dollar symbol
+  function formatBalance(amount) {
+    return amount < 0 ? `-$${Math.abs(amount)}` : `$${amount}`;
+  }
+
+  // LOTS OF COMMENTS BECAUSE THIS SHIT IS HARD
+  // Function to update the bank balance and money in hands
+  function updateBalances(amount, isDeposit) {
+    let balanceInBank = parseInt(
+      balanceInBankElement.textContent.replace(/[^0-9-]/g, "")
+    ); // Current bank balance
+    let moneyInHands = parseInt(
+      moneyInHandsElement.textContent.replace(/[^0-9]/g, "")
+    ); // Current money in hands
+
+    if (isDeposit) {
+      if (amount > 0 && amount <= moneyInHands) {
+        balanceInBank += amount;
+        moneyInHands -= amount;
+      } else {
+        playErrorSound();
+        loanInfoElement.textContent = `Ah yes, the classic "deposit money I don't have" strategy. A bold choice. Unfortunately, this bank operates in reality, not wishful thinking.`;
+        return;
+      }
+    } else {
+      const totalLoan = Math.abs(balanceInBank);
+      if (amount > 0 && totalLoan + amount <= MAX_BANK_LOAN) {
+        balanceInBank -= amount;
+        moneyInHands += amount;
+      } else {
+        playErrorSound();
+        loanInfoElement.textContent = `Remember, we can only loan you up to $1000. We've lent you $${totalLoan} already. Do you also need us to lend you a calculator?`;
+        return;
+      }
+    }
+
+    // Update the DOM
+    balanceInBankElement.textContent = formatBalance(balanceInBank);
+    moneyInHandsElement.textContent = moneyInHands;
+    moneyInBankElement.textContent = formatBalance(balanceInBank);
+
+    // Redeclare the global moneyInHand variable
+    moneyInHand = moneyInHands; // Update the global variable with the new value
+
+    // Remove the .highlight class if the balance is 0 or more
+    if (balanceInBank >= 0) {
+      bankBalanceDisplay.classList.remove("highlight");
+      moneyInBankDisplay.classList.remove("highlight");
+    } else {
+      bankBalanceDisplay.classList.add("highlight");
+      moneyInBankDisplay.classList.add("highlight");
+    }
+
+    // Reset the loan info text to the default message
+    loanInfoElement.textContent =
+      'At Lend-A-Lot, we can lend you up to $1000, no questions asked. But pay soon, or we\'ll send our "friendly" collectors for a chat.';
+  }
+
+  // Event listener for deposit button
+  if (depositButton) {
+    depositButton.addEventListener("click", () => {
+      playButtonClickSound();
+      const amount = parseInt(amountInput.value);
+      updateBalances(amount, true); // Deposit
+      amountInput.value = ""; // Clear the input field
+    });
+  }
+
+  // Event listener for withdraw button
+  if (withdrawButton) {
+    withdrawButton.addEventListener("click", () => {
+      playButtonClickSound();
+      const amount = parseInt(amountInput.value);
+      updateBalances(amount, false); // Withdraw
+      amountInput.value = ""; // Clear the input field
+    });
+  }
+
+  // Event listener for goback-bank button
+  if (gobackBankButton) {
+    gobackBankButton.addEventListener("click", () => {
+      playButtonClickSound();
+      document
+        .querySelector(".bank-transaction-container")
+        .classList.add("hidden"); // Hide the modal
+      document.querySelector(".dark-overlay").classList.remove("active"); // Hide the overlay
+    });
+  }
+
+  // Event listener for the input field to remove the placeholder on focus
+  if (amountInput) {
+    amountInput.addEventListener("focus", () => {
+      amountInput.placeholder = ""; // Clear the placeholder
+    });
+
+    amountInput.addEventListener("blur", () => {
+      amountInput.placeholder = "Enter amount"; // Restore the placeholder on blur
+    });
+  }
 });
