@@ -35,7 +35,6 @@ document.addEventListener("DOMContentLoaded", function () {
 /////////////////////////////////////////////////////
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Selectors
   const drugTransactionContainer = document.querySelector(
     ".drug-transaction-container"
   );
@@ -43,8 +42,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const sellButton = drugTransactionContainer.querySelector(".dt-sell-button");
   const overlay = document.querySelector(".dark-overlay");
   const moneyDisplay = document.querySelector(".money-in-hands span");
-  let moneyInHand = parseInt(moneyDisplay.textContent);
-  let drugInPocketElement = null;
+  let moneyInHand = parseInt(moneyDisplay.textContent); // MONEY IN HAND DECLARED GLOBALLY
+  let drugInPocketElement = null; // I'll assign a value later
 
   const dtTotalElement = drugTransactionContainer.querySelector(".dt-total");
   const dtPillElement = drugTransactionContainer.querySelector("#dt-pill");
@@ -273,7 +272,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentDayIndex = 0; // Start at MON (index 0)
   let currentDayOfMonth = 1; // Start at day 1
 
-  // Drug price ranges
+  // Drug price ranges... CAPS MATTER
   const drugPriceRanges = {
     CANNABIS: {
       regular: [100, 300],
@@ -433,6 +432,7 @@ document.addEventListener("DOMContentLoaded", () => {
 /////////////////////////////////////////////////////
 
 document.addEventListener("DOMContentLoaded", () => {
+  //To run only after the HTML is fully available
   // Selectors
   const bankTransactionContainer = document.querySelector(
     ".bank-transaction-container"
@@ -459,77 +459,92 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Selectors
-  const balanceInBankElement = document.querySelector(".balanceInBank");
-  const moneyInHandsElement = document.querySelector(".money-in-hands span");
-  const moneyInBankElement = document.querySelector(".money-in-bank span");
-  const depositButton = document.querySelector(".bt-deposit");
-  const withdrawButton = document.querySelector(".bt-withdraw");
-  const gobackBankButton = document.querySelector(".goback-bank");
-  const amountInput = document.querySelector("#bt-amount");
-  const bankBalanceDisplay = document.querySelector(".bt-balance-display");
-  const moneyInBankDisplay = document.querySelector(".money-in-bank");
-  const loanInfoElement = document.querySelector(".bt-loan-info");
-  const buttonClickSound = new Audio("sounds/buttonClick.mp3");
-  const errorSound = new Audio("sounds/error.mp3");
+  // Selectors | ANYTHING BT REFERS TO THE MODAL
+  const balanceInBankElement = document.querySelector(".balanceInBank"); // This is the -$700 within the modal
+  const moneyInHandsElement = document.querySelector(".money-in-hands span"); // The money in hands: $700
+  const moneyInBankElement = document.querySelector(".money-in-bank span"); // The $700 in the original UI
+  const depositButton = document.querySelector(".bt-deposit"); // Deposit button in modal
+  const withdrawButton = document.querySelector(".bt-withdraw"); // Withdraw button in modal
+  const gobackBankButton = document.querySelector(".goback-bank"); // The X to close the modal
+  const amountInput = document.querySelector("#bt-amount"); // The input field with the 'Enter amount' placeholder
+  const bankBalanceDisplay = document.querySelector(".bt-balance-display"); //It contains the balanceInBank and has highlight style
+  const moneyInBankDisplay = document.querySelector(".money-in-bank"); //Money in bank in original UI with highlight style
+  const loanInfoElement = document.querySelector(".bt-loan-info"); // Paragraph inside modal explaining loans
+  const buttonClickSound = new Audio("sounds/buttonClick.mp3"); // Clicking sound for all buttons
+  const errorSound = new Audio("sounds/error.mp3"); // Error sound for wrong amount in deposit or withdrawals
+  const MAX_BANK_LOAN = 1000; // Const that never change can be written in uppercase and underscores (apparently)
 
-  const MAX_BANK_LOAN = 1000; // Maximum loan limit
-
-  // Function to play the button click sound
+  //BUTTON CLICK SOUND
   function playButtonClickSound() {
-    buttonClickSound.currentTime = 0; // Reset the sound to the beginning
+    buttonClickSound.currentTime = 0; // Reset the sound to the beginning in case of button spammers
     buttonClickSound.play();
   }
 
-  // Function to play the error sound
+  // ERROR SOUND
   function playErrorSound() {
-    errorSound.currentTime = 0; // Reset the sound to the beginning
+    errorSound.currentTime = 0; // For button spammers
     errorSound.play();
   }
 
-  // Function to format the balance with the correct sign and dollar symbol
+  // Function to format the balance with a dollar sign and handle negative values
   function formatBalance(amount) {
-    return amount < 0 ? `-$${Math.abs(amount)}` : `$${amount}`;
+    // Check if the amount is negative
+    return amount < 0
+      ? `-$${Math.abs(amount)}` // If negative: Convert to positive and add a "-" before "$"
+      : `$${amount}`; // If positive: Just add "$" in front of the amount
+
+    // `${}` is template literal syntax, allowing us to insert variables into a string.
   }
 
+  // Explanation of how the function works:
+  // - If the amount is negative (e.g., -50), I use 'Math.abs(amount)' to remove the negative sign
+  // - Then, I manually add '-' in front of the '$' to display '-$50'
+  // - If the amount is positive (e.g., 100), simply return '$100' as is
+
   // LOTS OF COMMENTS BECAUSE THIS SHIT IS HARD
-  // Function to update the bank balance and money in hands
+
+  //  'amount': The amount of money the player wants to deposit or withdraw
+  // 'isDeposit': A boolean (true = deposit, false = withdraw)
   function updateBalances(amount, isDeposit) {
     let balanceInBank = parseInt(
-      balanceInBankElement.textContent.replace(/[^0-9-]/g, "")
+      balanceInBankElement.textContent.replace(/[^0-9-]/g, "") // Removes everything except numbers and the minus sign
     ); // Current bank balance
     let moneyInHands = parseInt(
-      moneyInHandsElement.textContent.replace(/[^0-9]/g, "")
+      moneyInHandsElement.textContent.replace(/[^0-9]/g, "") // DO NOT allow negative value for money in hand
     ); // Current money in hands
 
+    // CASE 1: Depositing Money into the Bank
     if (isDeposit) {
       if (amount > 0 && amount <= moneyInHands) {
         balanceInBank += amount;
         moneyInHands -= amount;
       } else {
+        // User tries to deposit money they don't have
         playErrorSound();
         loanInfoElement.textContent = `Ah yes, the classic "deposit money I don't have" strategy. A bold choice. Unfortunately, this bank operates in reality, not wishful thinking.`;
         return;
       }
+      // CASE 2: Withdraw money which can create loan
     } else {
       const totalLoan = Math.abs(balanceInBank);
       if (amount > 0 && totalLoan + amount <= MAX_BANK_LOAN) {
         balanceInBank -= amount;
         moneyInHands += amount;
       } else {
+        // Error: The player is trying to borrow more than allowed
         playErrorSound();
         loanInfoElement.textContent = `Remember, we can only loan you up to $1000. We've lent you $${totalLoan} already. Do you also need us to lend you a calculator?`;
         return;
       }
     }
 
-    // Update the DOM
+    // Updating the effing DOM
     balanceInBankElement.textContent = formatBalance(balanceInBank);
-    moneyInHandsElement.textContent = moneyInHands;
+    moneyInHandsElement.textContent = moneyInHands; // No formatBalance cause money in hands always positive
     moneyInBankElement.textContent = formatBalance(balanceInBank);
 
-    // Redeclare the global moneyInHand variable
-    moneyInHand = moneyInHands; // Update the global variable with the new value
+    // Redeclare the global moneyInHand variable cause else everything goes to shit
+    moneyInHand = moneyInHands;
 
     // Remove the .highlight class if the balance is 0 or more
     if (balanceInBank >= 0) {
