@@ -299,7 +299,7 @@ document.addEventListener("DOMContentLoaded", () => {
       regular: [20, 50],
       lowRange: [
         [15, 19],
-        [51, 80],
+        [51, 85],
       ],
     },
     LSD: {
@@ -313,7 +313,7 @@ document.addEventListener("DOMContentLoaded", () => {
       regular: [150, 440],
       lowRange: [
         [120, 149],
-        [441, 550],
+        [441, 600],
       ],
     },
     OXYCODONE: {
@@ -326,8 +326,8 @@ document.addEventListener("DOMContentLoaded", () => {
     KETAMINE: {
       regular: [90, 150],
       lowRange: [
-        [70, 89],
-        [151, 200],
+        [60, 89],
+        [151, 250],
       ],
     },
     ADDERALL: {
