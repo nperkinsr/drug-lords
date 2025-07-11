@@ -9,5 +9,7 @@ This project was built to practise UI design, dynamic pricing algorithms, game l
 
 https://nperkinsr.github.io/drug-lords/
 
-![Screenshot 2025-03-24 at 23 18 08](https://github.com/user-attachments/assets/134f5b09-b5d5-45d3-9c40-e5c2f29d965e)
+<img width="1563" height="963" alt="Screenshot 2025-07-11 at 17 07 17" src="https://github.com/user-attachments/assets/9bff5477-c69a-49e3-b86a-69696a0f7a44" />
 
+
+<img width="1563" height="960" alt="Screenshot 2025-07-11 at 17 07 00" src="https://github.com/user-attachments/assets/c9d5cdb3-e563-4590-904e-0728ae19d2a9" />
